@@ -1,986 +1,753 @@
-# **🎓 Department-Wise Digital Notice Board System**
+# 🎓 Department-Wise Digital Notice Board System
 
-## 👨‍🎓 Project Team
+**FSD Project – System Design Document**
 
-    S. No. Student Name      Roll Number
-  -------- ----------------- -------------------
-         1 **Ankit Kumar**   **2400320100202**
-         2 **Alok Kumar**    **2400320100146**
+| S. No. | Student Name | Roll Number |
+|:------:|--------------|-------------|
+| 1 | **Ankit Kumar** | 2400320100202 |
+| 2 | **Alok Kumar** | 2400320100146 |
 
-**Project Type:** Full Stack Development (FSD)\
+**Project Type:** Full Stack Development (FSD)
 **Project Title:** Department-Wise Digital Notice Board System
+**Tech Stack:** React.js · Vite · Tailwind CSS · Node.js · Express.js · MongoDB · Mongoose · JWT · bcrypt
+
+---
+
+## 📑 Table of Contents
+
+1. [Project Overview](#1-project-overview)
+2. [System Architecture](#2-system-architecture)
+3. [Main Modules](#3-main-modules)
+4. [Database Design](#4-database-design)
+5. [REST API Design](#5-rest-api-design)
+6. [Recommended Development Phases](#6-recommended-development-phases)
+7. [How to Run the Project](#7-how-to-run-the-project)
+8. [Demo Accounts](#8-demo-accounts)
+
+---
+
+## 1. Project Overview
+
+### 1.1 Introduction
+
+The **Department-Wise Digital Notice Board System** is a full-stack web application that replaces traditional paper notice boards in colleges and universities with a secure, searchable and role-governed digital platform.
+
+- Every academic department (CSE, ECE, Mechanical, Civil, Biotech, Management) gets its own isolated notice stream.
+- Notices (circulars) are created, reviewed, approved and published entirely online.
+- Students receive only the notices that are relevant to their department and campus-wide announcements.
+- Urgent notices are highlighted instantly so that no important update is missed.
+- The system keeps a complete audit trail of who created, approved or rejected each notice.
+- The frontend is built with React.js and the backend is a RESTful API built with Node.js, Express.js and MongoDB.
+- Authentication is handled with JWT tokens and passwords are protected with bcrypt hashing.
+
+### 1.2 Background of the Problem
+
+- In most colleges, notices are still pinned on physical boards outside departments or sent through scattered WhatsApp groups.
+- Paper notices get torn, covered by newer notices or removed before students have read them.
+- Students who are absent on a particular day miss critical information such as exam schedules or placement drives.
+- WhatsApp groups contain a lot of unrelated chatter, so important notices get buried.
+- There is no single, trusted and official source for circulars.
+- Faculty members have no way to know how many students actually read a notice.
+- Old notices are hard to find because there is no search or filter option.
+- Printing and displaying hundreds of notices every semester wastes paper, time and money.
+- There is usually no approval workflow, so incorrect or unauthorised notices can be published.
+- Notices meant for one department often reach students of other departments, causing confusion.
+
+### 1.3 Problem Statement
+
+Colleges need a centralised digital platform where department-specific notices can be published after proper authorisation, delivered only to the intended audience, and tracked for reach and engagement, while keeping the whole process secure and auditable.
+
+### 1.4 Proposed Solution
+
+- A single web portal accessible from desktop, tablet and mobile browsers.
+- Role-based accounts for Admin, HOD, Faculty and Students.
+- A **faculty → HOD approval workflow**: notices created by faculty stay *pending* until the HOD approves them.
+- Notices created by HOD or Admin are published immediately.
+- Department isolation so users can only access data belonging to their own department.
+- Categories, priorities and attachments for every notice.
+- Powerful search, filter, sort and pagination.
+- Bookmarking so students can save important notices.
+- Role-specific dashboards with statistics and charts.
+- Audit logs for transparency and accountability.
+
+### 1.5 Objectives of the Project
+
+- To eliminate dependency on paper notice boards.
+- To provide a fast, reliable and official communication channel inside the campus.
+- To implement strict role-based access control (RBAC).
+- To ensure that notices are verified by the HOD before reaching students.
+- To enable department-wise filtering of information.
+- To highlight urgent notices using priority levels and visual badges.
+- To allow attachments such as PDFs, Word documents and images.
+- To give management visibility through analytics dashboards.
+- To maintain a secure system with hashed passwords, JWT authentication and validated input.
+- To build a clean, responsive and user-friendly interface.
+- To follow a modular, maintainable and scalable code structure.
+- To gain practical experience in full-stack development with the MERN-style stack.
+
+### 1.6 Scope of the Project
+
+**In scope**
+
+- User registration, login, logout and profile management.
+- Role and department assignment by Admin.
+- Department management (create, view, update, delete).
+- Notice creation, editing, deletion, approval and rejection.
+- Attachment upload (PDF, Word, images up to 10 MB).
+- Bookmarking of notices.
+- Role-based dashboards for Admin, HOD, Faculty and Student.
+- Search, filtering, sorting and pagination of notices.
+- Audit trail of important actions.
+
+**Out of scope (possible future work)**
+
+- Native mobile applications.
+- Real SMS and email gateway integration (the UI for alert preferences already exists).
+- Push notifications.
+- Multi-language notices.
+- Integration with an external ERP or LMS.
+
+### 1.7 Key Features
+
+- 🔐 Secure login with JWT authentication.
+- 👥 Four user roles with different permissions.
+- 🏛️ Department isolation across notices, users and dashboards.
+- ✅ HOD approval workflow for faculty notices.
+- 🚨 Priority levels (low, medium, high) with urgent highlighting.
+- 🗂️ Six notice categories: examination, events, placement, workshop, holiday, general.
+- 📎 Multi-format attachments.
+- 🔍 Instant search with advanced filters.
+- 🔖 Bookmark and save notices.
+- 📊 Charts and KPIs using Recharts.
+- 🔔 Notification bell with unread counter.
+- 🧾 Audit trail for administrative actions.
+- 📱 Fully responsive layout with mobile drawer navigation.
+- ⚡ 1-click demo login for quick testing.
 
-------------------------------------------------------------------------
-
-A modern, responsive, and role-governed web application built with
-**React.js, Vite, Tailwind CSS, React Router DOM, Lucide Icons, and
-Recharts**.
-
-This frontend is modeled directly on modern college management
-dashboards (incorporating the clean card layouts, detail side drawer,
-calendar timeline, and urgency badges from your reference designs).
-
-------------------------------------------------------------------------
-
-## **📌 Summary of Completed Pages**
-
-### **1. Landing Page (`/`)**
-
--   **Hero Section:** High-impact headline, live urgent notices alert
-    ticker, stats banner (6 Departments, 4,250+ Students, 180+ Faculty,
-    99.8% Reach), and primary CTAs.
--   **1-Click Instant Demo Launcher:** Quick-login buttons directly in
-    the hero for **Admin, HOD, Faculty, and Student** roles.
--   **System Introduction:** Visual presentation explaining how
-    department isolation and digital broadcasts eliminate paper bulletin
-    board clutter.
--   **Features Grid:** Role-based permissions, emergency alerts,
-    department isolation, multi-format attachments, instant search, and
-    HOD approval workflows.
--   **Department Directory Showcase:** Individual cards for **CSE, ECE,
-    Mechanical, Civil, Biotech, and Management** displaying active
-    notice counts and HOD profiles with direct filter links.
--   **Live Circular Preview:** Interactive tabbed cards (**All,
-    Examinations, Placements, Events, Academic**) with quick detail
-    preview drawer.
--   **Footer:** Accreditation badges, department directories, and IT
-    helpdesk contact links.
-
-------------------------------------------------------------------------
-
-### **2. Login Page (`/login`)**
-
--   **Dual Login Flow:** Standard institutional email/password input
-    alongside a **1-Click Demo Role Switcher** (Admin, HOD, Faculty,
-    Student) for instant testing.
--   **Show/Hide Password:** Interactive eye toggle with smooth
-    transitions.
--   **Remember Me:** Stateful persistence checkbox with `localStorage`
-    session retention.
--   **Forgot Password UI:** Interactive modal with recovery email
-    submission and toast notification feedback.
-
-------------------------------------------------------------------------
-
-### **3. Register Page (`/register`)**
-
--   **Role Governance:** Students can self-register with standard
-    enrollment details.
--   **Privileged Role Protection:** Faculty/Staff registration is
-    restricted and requires the institutional authorization key
-    (`APEX2026`) with explanatory helper alerts to enforce campus
-    communication integrity.
--   **Fields:** Full Name, University Email, Enrollment/Employee Code,
-    Department Dropdown, Password with confirmation check, and
-    University IT Policy acceptance checkbox.
-
-------------------------------------------------------------------------
-
-### **4. Admin Dashboard (`/dashboard/admin`)**
-
--   **Primary KPI Cards:** Academic Departments (6), Enrolled Students
-    (4,250), Appointed Faculty (180+), and Total Circulars Published.
--   **Recharts Analytics Suite:**  
-    -   **Department Notice Volume & Engagement:** Responsive Bar Chart
-        comparing published notices vs. pending reviews across
-        departments.
-    -   **Notice Category Distribution:** Donut Chart with breakdown
-        (Academic, Examinations, Placements, Events, Administration,
-        Sports).
--   **Pending Moderation Queue:** Circulars submitted by faculty
-    requiring university validation, equipped with **Approve** and
-    **Reject/Revise** action buttons.
--   **System Audit Trail:** Real-time log of administrative and faculty
-    actions with timestamps.
-
-------------------------------------------------------------------------
-
-### **5. HOD Dashboard (`/dashboard/hod`)**
-
--   **Department Executive Banner:** Highlights HOD credentials
-    (Dr. Sarah Jenkins), department student count, and active term
-    status.
--   **Department Statistics:** Active notices, pending faculty
-    approvals, department faculty count, and enrolled students.
--   **Pending Notice Approval Queue:** Review circular drafts submitted
-    by department faculty, with 1-click **Approve** or **Reject /
-    Revise** with feedback notes.
--   **Faculty Directory:** Roster of department professors with academic
-    specialization, email, designation, active status badges, and
-    authored circular counts.
--   **Notice Management:** Search, filter, and inspect live circulars.
-
-------------------------------------------------------------------------
-
-### **6. Faculty Dashboard (`/dashboard/faculty`)**
-
--   **Welcome Profile Card:** Departmental designation (Prof. Rajiv
-    Sharma, Associate Professor - CSE).
--   **Performance Metrics:** Published circulars, pending review count,
-    cumulative student read views, and target reach percentage.
--   **Notice Management Table:** Filter by status (**All, Published, In
-    Review**), edit notice drafts, or remove outdated notices.
--   **Department Announcements Feed:** Pinned broadcasts from the HOD
-    and Academic Dean.
-
-------------------------------------------------------------------------
-
-### **7. Student Dashboard (`/dashboard/student`)**
-
-*(Inspired by Reference Images 1 & 3)*
-
--   **Personalized Student Banner:** "Hi, Danielle Attah" with Semester
-    6, Section A, and Roll Number (`21CS042`).
--   **Urgent Notice Banner:** Pulsing red priority alert for midterm
-    examinations with direct access to guidelines.
--   **Filterable Notice Stream:** Fast category chips (**All,
-    Examinations, Placements, Events, Saved**), live search bar, and
-    attachment badges.
--   **Academic Calendar & Events Widget:** Interactive agenda for exams,
-    national hackathons, and placement preparation sessions.
-
-------------------------------------------------------------------------
-
-### **8. All Notices Page (`/notices`)**
-
-*(Inspired by Reference Image 2 - Schola Notice Board)*
-
--   **Multi-Parameter Filter Toolbar:**  
-    -   Department dropdown (`All`, `CSE`, `ECE`, `ME`, `Civil`,
-        `Biotech`, `Management`)
-    -   Category dropdown (`All`, `Academic`, `Examinations`, `Events`,
-        `Placements`, etc.)
-    -   Priority filter (`All`, `Urgent`, `High`, `Normal`, `Low`)
-    -   Sort options (`Most Recent`, `Urgent First`, `Most Viewed`,
-        `Oldest First`)
-    -   Search bar with clear button (`Ctrl + K` indicator)
--   **View Mode Toggle:** Switch seamlessly between **Grid View**
-    (cards) and **List / Detail View** (Schola style).
--   **Pagination Controls:** Previous/Next page navigation with total
-    circular counts.
--   **Active Filter Chips:** Visual removable chips and 1-click "Reset"
-    button.
+### 1.8 Target Audience
 
-------------------------------------------------------------------------
+**Primary users**
 
-### **9. Notice Details Page (`/notices/:id`)**
-
--   **Document Viewer Layout:** Full circular title, urgency and
-    category tags, department seal, and views counter.
--   **Issuing Authority Profile:** Avatar, designation, department, and
-    official post date.
--   **Target Audience Badge:**
-    (e.g. `All 3rd Year Students, Faculty & Scholars`).
--   **Downloadable Attachments:** Dedicated attachment cards (`.pdf`,
-    file sizes) with animated download toast feedback.
--   **Action Toolbar:** Bookmark notice, Copy Share Link to clipboard,
-    Print Notice, and Back to Notices.
--   **Related Circulars:** Automatic suggestions from the same
-    department or category.
-
-------------------------------------------------------------------------
-
-### **10. Profile Page (`/profile`)**
-
--   **User Identity Card:** User avatar, role badge, department, email,
-    contact phone, and roll/staff code.
--   **Interactive Edit Mode:** Edit name, contact, department, and ID
-    with **Save Changes** and **Cancel** controls.
--   **Alert Preferences:** Checkboxes for Urgent SMS Alerts, Department
-    Email Digest, and Exam Timetable notifications.
--   **Saved / Bookmarked Notices Tab:** Instant access to notices
-    bookmarked by the user.
--   **Authored Circulars History Tab:** Available for Faculty, HOD, and
-    Admin.
-
-------------------------------------------------------------------------
-
-## **🛠 Reusable Components Created**
-
-1.  **`Navbar.jsx`**: Sticky header with search bar shortcut, "Draft
-    Notice" action, NotificationBell, and ProfileDropdown.
-2.  **`Sidebar.jsx`**: Responsive desktop sidebar & mobile slide-out
-    drawer with role-adaptive routes and department shortcuts.
-3.  **`NoticeCard.jsx`**: Styled card with urgency pings, department
-    tag, read time, attachment counter, and bookmarking.
-4.  **`NoticeDrawer.jsx`**: Slide-over detail panel (inspired by Schola
-    design) for quick inspection without leaving the page.
-5.  **`CreateNoticeModal.jsx`**: Accessible native `<dialog>` modal with
-    validation, role workflows, and simulated file uploads.
-6.  **`StatCard.jsx`**: KPI cards with trends (`+8.4%`), colored icon
-    backdrops, and hover transitions.
-7.  **`SearchBar.jsx`**: Search input with clear button and keyboard
-    badge.
-8.  **`FilterDropdown.jsx`**: Styled select dropdown for departments,
-    categories, and priorities.
-9.  **`NotificationBell.jsx`**: Bell with unread counter, popover list
-    of alerts, and "Mark all as read" button.
-10. **`ProfileDropdown.jsx`**: Profile avatar, email, role badge,
-    1-click role switcher, and sign-out.
-11. **`ProtectedRoute.jsx`**: Route guard that validates roles and
-    presents a 1-click role switcher if permissions are restricted.
-12. **`Footer.jsx`**: Professional institutional footer with legal links
-    and helpdesk contact.
-
-------------------------------------------------------------------------
-
-## **🏃 How to Run the Frontend**
-
-The project is ready to run immediately.
-
-### **Option 1: From the Root Directory (`FSD-Project/`)**
-
-    powershell
-
-npm run dev
-
-### **Option 2: From the `frontend/` Directory**
-
-    powershell
-
-cd frontend
-
-npm run dev
-
-Open your browser to: 👉 **`http://localhost:5173/`**
-
-To verify a production build:
-
-    powershell
-
-cd frontend
-
-npm run build
-
-npm run preview
-
-------------------------------------------------------------------------
-
-## **🔑 Demo Login Accounts**
-
-  ----------------------------------------------------------------------------------
-  Role          Name            Email                                Password
-  ------------- --------------- ------------------------------------ ---------------
-  **Super       Dr. Alistair    `admin@apexuniversity.edu`           `password123`
-  Admin**       Vance                                                
-
-  **HOD (CSE)** Dr. Sarah       `sarah.jenkins@apexuniversity.edu`   `password123`
-                Jenkins                                              
-
-  **Faculty**   Prof. Rajiv     `rajiv.sharma@apexuniversity.edu`    `password123`
-                Sharma                                               
-
-  **Student**   Danielle Attah  `danielle.attah@student.apex.edu`    `password123`
-  ----------------------------------------------------------------------------------
-
-*(You can also use the 1-click demo buttons on the Login page or the
-top-right profile menu to switch roles on the fly).*
-
-------------------------------------------------------------------------
-
-### **Modern Web Guidance**
-
--   **`dialog`**: Implemented the native `<dialog>` element with
-    `overscroll-behavior: contain` on `:modal` and `::backdrop` to
-    prevent the background page from chaining gestures when scrolling
-    dialogs ("scrolling over the backdrop or inside the dialog scrolls
-    the page behind it").
-
-Act as a senior Node.js backend developer. I have already developed the
-frontend of my project: Department-Wise Digital Notice Board System. Now
-develop a complete backend using: - Node.js - Express.js - MongoDB -
-Mongoose - JWT - bcrypt - dotenv - cors - express-validator IMPORTANT:
-First inspect my existing frontend project. Do not modify or break the
-frontend. Create a separate backend folder. BACKEND ARCHITECTURE:
-backend/ config/ controllers/ models/ routes/ middleware/ services/
-utils/ uploads/ server.js package.json .env.example IMPLEMENT THE
-FOLLOWING MODULES: 1. Authentication - Register user - Login user -
-Logout - Get current user profile - Update profile - Change password 2.
-User Management - Create users - Get all users - Update users - Delete
-users - Assign department - Assign user roles 3. Department Management -
-Create department - Get all departments - Get department by ID - Update
-department - Delete department 4. Notice Management - Create notice -
-Get all notices - Get notice by ID - Update notice - Delete notice -
-Approve notice - Reject notice 5. Bookmark Management - Bookmark
-notice - Remove bookmark - Get bookmarked notices 6. Dashboard APIs -
-Admin dashboard statistics - HOD dashboard statistics - Faculty
-dashboard statistics - Student dashboard statistics ROLE-BASED ACCESS
-CONTROL: Roles: - admin - hod - faculty - student Permissions: Admin:
-Full application management. HOD: Manage notices and faculty within
-their assigned department. Approve or reject faculty notices. Faculty:
-Create notices for their assigned department. View and manage their own
-notices. Student: View approved notices belonging to their department.
-Bookmark notices. SECURITY: - Hash passwords using bcrypt. - Use JWT
-authentication. - Implement authentication middleware. - Implement role
-authorization middleware. - Validate all request data. - Prevent
-unauthorized department access. - Never store plain-text passwords. -
-Use secure error handling. NOTICE STATUS: - pending - approved -
-rejected NOTICE PRIORITY: - low - medium - high NOTICE CATEGORY: -
-examination - events - placement - workshop - holiday - general Create
-RESTful APIs with proper HTTP status codes. Add sample API documentation
-with request and response examples. Test all APIs and fix errors. Do not
-use hardcoded credentials or secrets. At the end, explain how to run the
-backend.
-
-# **🚀 Department-Wise Digital Notice Board System - Backend**
-
-I have designed and implemented a production-grade, secure, and modular
-backend for the **Department-Wise Digital Notice Board System** using
-**Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs, and
-express-validator**.
-
-The frontend was inspected first, kept untouched, and verified to build
-cleanly with zero errors.
-
-------------------------------------------------------------------------
-
-## **📁 Backend Directory Architecture**
-
-    backend/
-
-├── config/
-
-│ └── db.js \# Mongoose connection with event listeners
-
-├── controllers/
-
-│ ├── authController.js \# Register, Login, Profile & Password
-operations
-
-│ ├── bookmarkController.js \# Bookmark, Unbookmark & User saved list
-
-│ ├── dashboardController.js# Role-scoped statistics & Recharts
-aggregation
-
-│ ├── departmentController.js# Department CRUD & metrics aggregation
-
-│ ├── noticeController.js \# Notice CRUD, approval, rejection & upload
-
-│ └── userController.js \# User management, role & department
-assignments
-
-├── middleware/
-
-│ ├── auth.js \# JWT verification, RBAC & department isolation
-
-│ ├── errorHandler.js \# Centralized error handler
-
-│ ├── upload.js \# Multer attachment upload handler (10MB limit)
-
-│ └── validate.js \# express-validator request handler
-
-├── models/
-
-│ ├── ActivityLog.js \# Audit trail logging
-
-│ ├── Bookmark.js \# Notice bookmarking (compound unique index)
-
-│ ├── Department.js \# Academic departments schema
-
-│ ├── Notice.js \# Circulars with status, priority & categories
-
-│ └── User.js \# User accounts with bcrypt hashing & JWT methods
-
-├── routes/
-
-│ ├── authRoutes.js \# /api/auth
-
-│ ├── bookmarkRoutes.js \# /api/bookmarks
-
-│ ├── dashboardRoutes.js \# /api/dashboard
-
-│ ├── departmentRoutes.js \# /api/departments
-
-│ ├── noticeRoutes.js \# /api/notices
-
-│ └── userRoutes.js \# /api/users
-
-├── uploads/ \# Storage directory for notice attachments
-
-├── utils/
-
-│ ├── seed.js \# Database population script with demo accounts
-
-│ └── testApi.js \# Automated end-to-end API test suite
-
-├── .env.example \# Configuration template
-
-├── package.json \# Backend dependencies & run scripts
-
-└── server.js \# Express application entrypoint
-
-------------------------------------------------------------------------
-
-## **🛡 Modules Implemented**
-
-### **1. Authentication Module (`/api/auth`)**
-
--   **`POST /api/auth/register`**: Registers student accounts or
-    privileged roles using the institutional access code (`APEX2026`).
-    Passwords are encrypted using bcrypt (10 rounds).
--   **`POST /api/auth/login`**: Authenticates credentials and returns a
-    signed JWT token containing user identity and role.
--   **`POST /api/auth/logout`**: Confirms user session termination.
--   **`GET /api/auth/me`**: Returns the authenticated user's current
-    profile.
--   **`PUT /api/auth/profile`**: Updates editable profile fields (name,
-    phone, avatar, designation).
--   **`PUT /api/auth/change-password`**: Verifies current password
-    before hashing and saving the new password.
-
-### **2. User Management Module (`/api/users`)**
-
--   **`GET /api/users`**: Lists users with pagination and search. Super
-    Admins view all users; HODs only see faculty and students within
-    their department.
--   **`GET /api/users/:id`**: Retrieves a single user profile (with
-    department isolation checks).
--   **`POST /api/users`**: Super Admin creates users with designated
-    role and department.
--   **`PUT /api/users/:id`**: Updates user information.
--   **`DELETE /api/users/:id`**: Super Admin removes a user account
-    (prevents self-deletion).
--   **`PATCH /api/users/:id/department`**: Admin reassigns a user's
-    department and updates department statistics.
--   **`PATCH /api/users/:id/role`**: Admin updates a user's role
-    (`admin`, `hod`, `faculty`, `student`).
-
-### **3. Department Management Module (`/api/departments`)**
-
--   **`GET /api/departments`**: Returns all 6 academic departments
-    (`CSE`, `ECE`, `ME`, `Civil`, `Biotech`, `Management`) enriched with
-    real-time active notice, faculty, and student counts.
--   **`GET /api/departments/:id`**: Fetches department by ObjectId or
-    department code (e.g., `/api/departments/CSE`), including the HOD
-    profile and faculty roster.
--   **`POST /api/departments`**: Admin creates a new department.
--   **`PUT /api/departments/:id`**: Admin updates department metadata or
-    links an HOD.
--   **`DELETE /api/departments/:id`**: Admin deletes a department
-    (protected against deletion if users or notices are still assigned).
-
-### **4. Notice Management Module (`/api/notices`)**
-
--   **`GET /api/notices`**: High-performance query engine with filtering
-    by `department`, `category`, `priority`, `status`, `search`, and
-    pagination.  
-    -   **Role-Based Visibility (RBAC):**  
-        -   **Student:** Receives only `approved` circulars matching
-            their department or campus-wide (`All`).
-        -   **Faculty:** Receives all `approved` circulars for their
-            department plus their own authored notices (including
-            `pending` and `rejected`).
-        -   **HOD:** Receives all notices in their department (including
-            the pending approval queue) and campus-wide notices.
-        -   **Admin:** Full visibility across all departments and
-            statuses.
--   **`GET /api/notices/:id`**: Retrieves notice details and increments
-    the view count (`viewsCount`).
--   **`POST /api/notices`**:  
-    -   If created by **Faculty**: Marked as `status: 'pending'` and
-        routed to the HOD approval queue.
-    -   If created by **HOD** or **Admin**: Marked as
-        `status: 'approved'` and published immediately.
--   **`PUT /api/notices/:id`**: Author, Department HOD, or Admin can
-    update notice content.
--   **`DELETE /api/notices/:id`**: Author, Department HOD, or Admin can
-    delete a notice.
--   **`PATCH /api/notices/:id/approve`**: HOD (for their department) or
-    Admin approves a notice, stamps `approvedBy` and `publishedAt`, and
-    logs an audit entry.
--   **`PATCH /api/notices/:id/reject`**: HOD or Admin rejects a notice
-    with `rejectionReason`.
--   **`POST /api/notices/upload`**: Multer upload endpoint for notice
-    attachments (`.pdf`, Word, and Images up to 10MB) stored in
-    `/uploads`.
-
-### **5. Bookmark Management Module (`/api/bookmarks`)**
-
--   **`POST /api/bookmarks/:noticeId`**: Saves a notice to the user's
-    bookmarks (enforced unique index).
--   **`DELETE /api/bookmarks/:noticeId`**: Removes a notice from
-    bookmarks.
--   **`GET /api/bookmarks`**: Returns all bookmarked notices populated
-    with full notice metadata and author profiles.
-
-### **6. Role-Based Dashboard APIs (`/api/dashboard`)**
-
--   **`GET /api/dashboard/admin`**: Super Admin overview including
-    department notices volume (formatted for Recharts BarChart),
-    category distribution (for Recharts DonutChart), recent notices, and
-    audit logs.
--   **`GET /api/dashboard/hod`**: Scoped to HOD's department
-    (`summary.activeNotices`, `summary.pendingApprovals`,
-    `pendingQueue`, and department faculty roster).
--   **`GET /api/dashboard/faculty`**: Scoped to the faculty user
-    (`myTotalNotices`, `publishedCount`, `pendingCount`, `totalViews`,
-    authored circulars, and departmental broadcasts).
--   **`GET /api/dashboard/student`**: Scoped to the student's cohort
-    (`urgentNotices`, latest circulars, `bookmarkedCount`, and upcoming
-    academic event dates).
-
-------------------------------------------------------------------------
-
-## **🔒 Security & Data Integrity**
-
-1.  **Password Hashing**: Passwords are encrypted using `bcryptjs` with
-    salt factor 10. `select: false` prevents hash leaks in user queries.
-2.  **JWT Authentication**: Signed with `JWT_SECRET` and configurable
-    expiry (`7d`).
-3.  **Department Isolation**: Middleware prevents faculty or HODs from
-    accessing, creating, approving, or modifying notices in departments
-    other than their own.
-4.  **Validation**: All endpoints are validated with `express-validator`
-    and sanitized.
-5.  **No Hardcoded Secrets**: Configuration is fully managed via
-    `backend/.env`.
-
-------------------------------------------------------------------------
-
-## **⚡ How to Run the Backend**
-
-### **Step 1: Install Dependencies**
-
-    powershell
-
-cd backend
-
-npm install
-
-### **Step 2: Seed the Database**
-
-Pre-populate the database with the 6 academic departments, demo users
-with hashed passwords, and realistic notices:
-
-    powershell
-
-npm run seed
-
-Output:
-
-    [Seeding]: Connecting to MongoDB...
-
-✅ DATABASE SEEDING COMPLETED SUCCESSFULLY!
-
-### **Step 3: Start the Backend Server**
-
-    powershell
-
-\# Standard run
-
-npm start
-
-\# Development run with auto-reload
-
-npm run dev
-
-The server will start on **`http://localhost:5000`**.
-
-### **Step 4: Run Automated Tests**
-
-Execute the automated test suite verifying all 6 modules and RBAC
-policies:
-
-    powershell
-
-npm test
-
-Test Results:
-
-    ======================================================
-
-🧪 RUNNING COMPREHENSIVE BACKEND API TEST SUITE
-
-Target Base URL: http://localhost:5000
-
-======================================================
-
-\[1/7\] Testing System Health Check...
-
-  ✓ Health check returns 200 OK
-
-  ✓ Health status is online
-
-\[2/7\] Testing Authentication Module...
-
-  ✓ Admin login succeeds with 200 OK
-
-  ✓ HOD login succeeds with 200 OK
-
-  ✓ Faculty login succeeds with 200 OK
-
-  ✓ Student login succeeds with 200 OK
-
-  ✓ GET /api/auth/me returns 200 OK
-
-  ✓ Student registration returns 201 Created
-
-\[3/7\] Testing Department Management Module...
-
-  ✓ GET /api/departments returns 200 OK
-
-  ✓ Contains all 6 seeded academic departments
-
-\[4/7\] Testing Notice Management & RBAC...
-
-  ✓ Faculty creates notice with 201 Created (defaults to 'pending')
-
-  ✓ Student cannot see pending unapproved notices (RBAC enforced)
-
-  ✓ HOD approves notice with 200 OK
-
-  ✓ Student can see notice once approved by HOD
-
-\[5/7\] Testing Bookmark Management...
-
-  ✓ POST /api/bookmarks/:noticeId returns 201 Created
-
-  ✓ GET /api/bookmarks returns 200 OK
-
-  ✓ DELETE /api/bookmarks/:noticeId returns 200 OK
-
-\[6/7\] Testing Role-Based Dashboard Analytics APIs...
-
-  ✓ GET /api/dashboard/admin returns 200 OK
-
-  ✓ GET /api/dashboard/hod returns 200 OK
-
-  ✓ GET /api/dashboard/faculty returns 200 OK
-
-  ✓ GET /api/dashboard/student returns 200 OK
-
-\[7/7\] Testing Security & Permission Rejections (RBAC)...
-
-  ✓ Student cannot create notice (403 Forbidden)
-
-  ✓ Faculty cannot approve notices (403 Forbidden)
-
-  ✓ Unauthenticated request receives 401 Unauthorized
-
-======================================================
-
-🎉 ALL TEST SUITES PASSED WITH 100% SUCCESS!
-
-======================================================
-
-------------------------------------------------------------------------
-
-## **🔑 Demo Account Credentials**
-
-  -----------------------------------------------------------------------------------
-  Role          Email                                Password        Assigned
-                                                                     Department
-  ------------- ------------------------------------ --------------- ----------------
-  **Super       `admin@apexuniversity.edu`           `password123`   `All`
-  Admin**                                                            
-
-  **HOD (CSE)** `sarah.jenkins@apexuniversity.edu`   `password123`   `CSE`
-
-  **Faculty**   `rajiv.sharma@apexuniversity.edu`    `password123`   `CSE`
-
-  **Student**   `danielle.attah@student.apex.edu`    `password123`   `CSE`
-  -----------------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-## **📖 Sample API Request & Response Examples**
-
-### **1. Login Request**
-
-`POST /api/auth/login`
-
-    json
-
-{
-
-"email": "sarah.jenkins@apexuniversity.edu",
-
-"password": "password123"
-
-}
-
-**Response (`200 OK`):**
-
-    json
-
-{
-
-"success": true,
-
-"message": "Authentication successful",
-
-"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-
-"user": {
-
-"id": "6745f902f4a569b91c890121",
-
-"name": "Dr. Sarah Jenkins",
-
-"email": "sarah.jenkins@apexuniversity.edu",
-
-"role": "hod",
-
-"department": "CSE",
-
-"designation": "Head of Department & Professor"
-
-}
-
-}
-
-### **2. Faculty Notice Creation (Awaiting HOD Approval)**
-
-`POST /api/notices`
-
--   **Header:** `Authorization: Bearer <FACULTY_TOKEN>`
-
-```{=html}
-<!-- -->
+- **Students** – read approved notices of their department, track deadlines, bookmark important circulars and check the academic calendar.
+- **Faculty members** – draft notices for their department, track their status and see how many students have viewed them.
+- **Heads of Department (HOD)** – review the approval queue, approve or reject faculty notices and manage faculty in their department.
+- **System Administrators** – manage all departments, users, roles and monitor overall system activity.
+
+**Secondary users**
+
+- Training and Placement cell members who share placement drives.
+- Examination cell staff who publish timetables and result schedules.
+- College management who need an overview of communication activity.
+- Parents and guardians (future scope, read-only access).
+
+**Audience characteristics**
+
+- Mostly tech-comfortable students aged 17–24 who use smartphones daily.
+- Faculty with moderate technical skills who need a simple, form-based interface.
+- Administrators who need clear dashboards and control panels.
+- Users who access the portal from both laptops and mobile phones.
+
+### 1.9 Benefits for Each Stakeholder
+
+**Students**
+
+- Receive all official notices at one place.
+- Never miss deadlines because of urgent badges and dashboard banners.
+- Search old notices in seconds.
+- Save notices for later reference.
+
+**Faculty**
+
+- No need to print and paste notices.
+- Immediate feedback when a notice is approved or rejected.
+- Reach and view statistics for every notice.
+
+**HOD**
+
+- Full control over what is published for the department.
+- Single approval queue instead of scattered requests.
+- Faculty directory and notice management in one place.
+
+**Administration**
+
+- Centralised control and visibility.
+- Analytics on notice volume, categories and engagement.
+- Complete audit logs for accountability.
+
+**Institution**
+
+- Reduced paper usage and printing cost.
+- Improved communication and transparency.
+- A modern, digital-first campus image.
+
+### 1.10 Non-Functional Requirements
+
+- **Security:** hashed passwords, JWT tokens, validated input, secure error handling.
+- **Performance:** paginated queries and indexed database fields.
+- **Scalability:** modular controllers, routes and services.
+- **Usability:** clean card layouts, drawers, toasts and clear navigation.
+- **Responsiveness:** works on desktop, tablet and mobile.
+- **Maintainability:** separate folders for config, controllers, models, routes, middleware and utils.
+- **Reliability:** centralised error handling and automated API tests.
+- **Accessibility:** native `<dialog>` modals, keyboard shortcuts and readable colour contrast.
+
+### 1.11 Assumptions and Constraints
+
+- Every user has a valid institutional email address.
+- Faculty and staff registration requires an institutional authorisation key.
+- MongoDB is available locally or through a cloud service such as MongoDB Atlas.
+- Attachments are limited to 10 MB per file.
+- Secrets such as `JWT_SECRET` and the database URI are stored in `.env`, never in source code.
+
+### 1.12 Expected Outcome
+
+- A fully working, secure and responsive notice board system.
+- Clear separation between frontend and backend.
+- A tested REST API covering authentication, users, departments, notices, bookmarks and dashboards.
+- A project that can be deployed in a real college with minimal changes.
+
+---
+
+## 2. System Architecture
+
+### 2.1 Architecture Layers
+
+| Layer | Technology | Responsibility |
+|-------|-----------|----------------|
+| **Presentation Layer** | React.js, Vite, Tailwind CSS, React Router DOM, Lucide Icons, Recharts | UI pages, components, routing, charts, form handling |
+| **API / Application Layer** | Node.js, Express.js | REST endpoints, routing, request handling |
+| **Security Layer** | JWT, bcrypt, express-validator, CORS | Authentication, role authorisation, validation, hashing |
+| **Business Logic Layer** | Controllers & services | Notice workflow, approvals, dashboard statistics |
+| **Data Access Layer** | Mongoose | Schemas, models, queries, aggregation |
+| **Database Layer** | MongoDB | Persistent storage of users, departments, notices, bookmarks and logs |
+| **File Storage** | Multer + `/uploads` | Notice attachments |
+
+### 2.2 Architecture Flow
+
+```mermaid
+flowchart LR
+    A[User Browser<br/>React + Vite] -->|HTTP / JSON| B[Express.js Server]
+    B --> C[CORS & JSON Parser]
+    C --> D[Auth Middleware<br/>JWT Verify]
+    D --> E[Role & Department<br/>Authorization]
+    E --> F[express-validator]
+    F --> G[Controllers]
+    G --> H[Mongoose Models]
+    H --> I[(MongoDB)]
+    G --> J[Multer Uploads]
+    G --> K[Error Handler]
+    K --> A
 ```
-    json
 
+**Request lifecycle**
+
+1. The user performs an action in the React interface (for example, clicks *Approve*).
+2. The frontend sends an HTTP request with the `Authorization: Bearer <token>` header.
+3. Express receives the request and passes it through CORS and JSON parsing.
+4. The authentication middleware verifies the JWT and loads the user.
+5. The authorisation middleware checks the role and department access.
+6. express-validator validates the request body, params and query.
+7. The controller executes the business logic.
+8. Mongoose reads from or writes to MongoDB.
+9. The response is returned as JSON with a proper HTTP status code.
+10. The central error handler formats any error without leaking internal details.
+
+### 2.3 Backend Folder Structure
+
+```
+backend/
+├── config/
+│   └── db.js                    # MongoDB connection
+├── controllers/
+│   ├── authController.js
+│   ├── bookmarkController.js
+│   ├── dashboardController.js
+│   ├── departmentController.js
+│   ├── noticeController.js
+│   └── userController.js
+├── middleware/
+│   ├── auth.js                  # JWT, RBAC, department isolation
+│   ├── errorHandler.js
+│   ├── upload.js                # Multer (10 MB limit)
+│   └── validate.js              # express-validator handler
+├── models/
+│   ├── ActivityLog.js
+│   ├── Bookmark.js
+│   ├── Department.js
+│   ├── Notice.js
+│   └── User.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── bookmarkRoutes.js
+│   ├── dashboardRoutes.js
+│   ├── departmentRoutes.js
+│   ├── noticeRoutes.js
+│   └── userRoutes.js
+├── uploads/
+├── utils/
+│   ├── seed.js                  # Demo data
+│   └── testApi.js               # End-to-end API tests
+├── .env.example
+├── package.json
+└── server.js
+```
+
+### 2.4 Frontend Structure (Key Parts)
+
+- **Pages:** Landing, Login, Register, Admin / HOD / Faculty / Student dashboards, All Notices, Notice Details, Profile.
+- **Reusable components:** Navbar, Sidebar, NoticeCard, NoticeDrawer, CreateNoticeModal, StatCard, SearchBar, FilterDropdown, NotificationBell, ProfileDropdown, ProtectedRoute, Footer.
+- **Routing:** React Router DOM with `ProtectedRoute` guarding role-specific pages.
+
+---
+
+## 3. Main Modules
+
+### Module 1: User and Role Management
+
+**Four primary roles**
+
+| Role | Permissions |
+|------|-------------|
+| **Admin** | Full application management: users, roles, departments, all notices and dashboards |
+| **HOD** | Manage notices and faculty within their own department; approve or reject faculty notices |
+| **Faculty** | Create notices for their department; view and manage their own notices |
+| **Student** | View approved notices of their department; bookmark notices |
+
+**Features**
+
+- ➢ Login / logout
+- ➢ JWT authentication
+- ➢ Role-based authorization
+- ➢ Password change and password reset UI
+- ➢ Profile management
+- ➢ Department and role assignment
+- ➢ Institutional key (`APEX2026`) required for faculty / staff registration
+
+### Module 2: Department Management
+
+- Create, view, update and delete departments.
+- Fetch a department by ObjectId or code (e.g. `CSE`).
+- Link an HOD to a department.
+- Real-time counts of notices, faculty and students.
+- Deletion is blocked while users or notices are still assigned.
+
+### Module 3: Notice Management
+
+- Create, view, update and delete notices.
+- **Status:** `pending`, `approved`, `rejected`.
+- **Priority:** `low`, `medium`, `high`.
+- **Category:** `examination`, `events`, `placement`, `workshop`, `holiday`, `general`.
+- Faculty notices → `pending`; HOD / Admin notices → `approved` immediately.
+- HOD or Admin can approve or reject (rejection includes a reason).
+- Attachment upload (PDF, Word, images, max 10 MB).
+- View counter on every notice.
+- Filtering by department, category, priority, status and search text, with pagination.
+
+**Visibility rules**
+
+| Role | Can see |
+|------|---------|
+| Student | Approved notices of own department + campus-wide notices |
+| Faculty | Approved department notices + all of their own notices |
+| HOD | All notices of their department + campus-wide notices |
+| Admin | Everything |
+
+### Module 4: Bookmark Management
+
+- Bookmark a notice.
+- Remove a bookmark.
+- View all bookmarked notices with full details.
+- A compound unique index prevents duplicate bookmarks.
+
+### Module 5: Dashboard and Analytics
+
+- **Admin:** KPIs, department-wise volume chart, category distribution chart, pending queue and audit trail.
+- **HOD:** department statistics, approval queue, faculty directory.
+- **Faculty:** published / pending counts, total views, own notices, department broadcasts.
+- **Student:** urgent notices, latest circulars, bookmark count, upcoming events.
+
+### Module 6: Audit and Security
+
+- Activity log of important actions (approve, reject, create, etc.).
+- Centralised error handler.
+- Input validation on every endpoint.
+- Department isolation middleware.
+
+---
+
+## 4. Database Design
+
+### 4.1 Database Schema
+
+**Database:** MongoDB (accessed through Mongoose)
+
+#### User
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `_id` | ObjectId | Primary key |
+| `name` | String | Required |
+| `email` | String | Unique, required |
+| `password` | String | bcrypt hash, `select: false` |
+| `role` | String | `admin`, `hod`, `faculty`, `student` |
+| `department` | String / ref | Department code or reference |
+| `designation` | String | Optional |
+| `phone` | String | Optional |
+| `avatar` | String | Optional |
+| `enrollmentOrEmployeeCode` | String | Roll / staff code |
+| `createdAt`, `updatedAt` | Date | Timestamps |
+
+#### Department
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `_id` | ObjectId | Primary key |
+| `name` | String | e.g. Computer Science & Engineering |
+| `code` | String | Unique, e.g. `CSE` |
+| `hod` | ObjectId → User | Head of department |
+| `description` | String | Optional |
+
+#### Notice
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `_id` | ObjectId | Primary key |
+| `title` | String | Required |
+| `content` | String | Required |
+| `department` | String | Department code or `All` |
+| `category` | String | examination, events, placement, workshop, holiday, general |
+| `priority` | String | low, medium, high |
+| `status` | String | pending, approved, rejected |
+| `targetAudience` | String | e.g. "2nd Year CSE Students" |
+| `author` | ObjectId → User | Creator |
+| `approvedBy` | ObjectId → User | Approver |
+| `publishedAt` | Date | Set on approval |
+| `rejectionReason` | String | Set on rejection |
+| `attachments` | Array | File metadata |
+| `viewsCount` | Number | Incremented on view |
+
+#### Bookmark
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `_id` | ObjectId | Primary key |
+| `user` | ObjectId → User | |
+| `notice` | ObjectId → Notice | |
+| Index | Unique (`user`, `notice`) | Prevents duplicates |
+
+#### ActivityLog
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `_id` | ObjectId | Primary key |
+| `user` | ObjectId → User | Who performed the action |
+| `action` | String | e.g. notice approved |
+| `details` | String | Description |
+| `createdAt` | Date | Timestamp |
+
+> The field lists above summarise the design. Please match them with your actual Mongoose schemas in `backend/models/` before submission.
+
+### 4.2 ER Diagram
+
+```mermaid
+erDiagram
+    DEPARTMENT ||--o{ USER : "has members"
+    DEPARTMENT ||--o{ NOTICE : "owns"
+    USER ||--o{ NOTICE : "authors"
+    USER ||--o{ NOTICE : "approves"
+    USER ||--o{ BOOKMARK : "saves"
+    NOTICE ||--o{ BOOKMARK : "is saved in"
+    USER ||--o{ ACTIVITYLOG : "performs"
+    DEPARTMENT ||--o| USER : "headed by (HOD)"
+
+    USER {
+        ObjectId _id PK
+        string name
+        string email UK
+        string password
+        string role
+        string department
+        string designation
+        string phone
+    }
+    DEPARTMENT {
+        ObjectId _id PK
+        string name
+        string code UK
+        ObjectId hod FK
+    }
+    NOTICE {
+        ObjectId _id PK
+        string title
+        string content
+        string department
+        string category
+        string priority
+        string status
+        ObjectId author FK
+        ObjectId approvedBy FK
+        number viewsCount
+        date publishedAt
+    }
+    BOOKMARK {
+        ObjectId _id PK
+        ObjectId user FK
+        ObjectId notice FK
+    }
+    ACTIVITYLOG {
+        ObjectId _id PK
+        ObjectId user FK
+        string action
+        string details
+        date createdAt
+    }
+```
+
+---
+
+## 5. REST API Design
+
+**Base URL:** `http://localhost:5000/api`
+**Authentication:** `Authorization: Bearer <JWT_TOKEN>` (all routes except register and login)
+
+### 5.1 Authentication – `/api/auth`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| POST | `/auth/register` | Register user | Public |
+| POST | `/auth/login` | Login | Public |
+| POST | `/auth/logout` | Logout | Authenticated |
+| GET | `/auth/me` | Get current user profile | Authenticated |
+| PUT | `/auth/profile` | Update profile | Authenticated |
+| PUT | `/auth/change-password` | Change password | Authenticated |
+
+### 5.2 Users – `/api/users`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| GET | `/users` | Get all users (paginated, searchable) | Admin, HOD (own dept) |
+| GET | `/users/:id` | Get user by ID | Admin, HOD (own dept) |
+| POST | `/users` | Create user | Admin |
+| PUT | `/users/:id` | Update user | Admin |
+| DELETE | `/users/:id` | Delete user | Admin |
+| PATCH | `/users/:id/department` | Assign department | Admin |
+| PATCH | `/users/:id/role` | Assign role | Admin |
+
+### 5.3 Departments – `/api/departments`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| GET | `/departments` | Get all departments | Authenticated |
+| GET | `/departments/:id` | Get department by ID or code | Authenticated |
+| POST | `/departments` | Create department | Admin |
+| PUT | `/departments/:id` | Update department | Admin |
+| DELETE | `/departments/:id` | Delete department | Admin |
+
+### 5.4 Notices – `/api/notices`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| GET | `/notices` | Get notices (filters, search, pagination) | Role-based |
+| GET | `/notices/:id` | Get notice by ID (increments views) | Role-based |
+| POST | `/notices` | Create notice | Faculty, HOD, Admin |
+| PUT | `/notices/:id` | Update notice | Author, HOD, Admin |
+| DELETE | `/notices/:id` | Delete notice | Author, HOD, Admin |
+| PATCH | `/notices/:id/approve` | Approve notice | HOD (own dept), Admin |
+| PATCH | `/notices/:id/reject` | Reject notice | HOD (own dept), Admin |
+| POST | `/notices/upload` | Upload attachment | Faculty, HOD, Admin |
+
+### 5.5 Bookmarks – `/api/bookmarks`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| POST | `/bookmarks/:noticeId` | Bookmark a notice | Authenticated |
+| DELETE | `/bookmarks/:noticeId` | Remove bookmark | Authenticated |
+| GET | `/bookmarks` | Get bookmarked notices | Authenticated |
+
+### 5.6 Dashboards – `/api/dashboard`
+
+| HTTP Method | Endpoint | Purpose | Access |
+|:-----------:|----------|---------|--------|
+| GET | `/dashboard/admin` | Admin statistics | Admin |
+| GET | `/dashboard/hod` | HOD statistics | HOD |
+| GET | `/dashboard/faculty` | Faculty statistics | Faculty |
+| GET | `/dashboard/student` | Student statistics | Student |
+
+### 5.7 Sample Request and Response
+
+**Login – `POST /api/auth/login`**
+
+```json
 {
-
-"title": "Machine Learning Lab Supplementary Evaluation",
-
-"content": "Make-up laboratory exam will be held in Room 204 on Friday
-at 2:00 PM.",
-
-"department": "CSE",
-
-"category": "examination",
-
-"priority": "high",
-
-"targetAudience": "2nd Year CSE Students"
-
+  "email": "sarah.jenkins@apexuniversity.edu",
+  "password": "password123"
 }
+```
 
-**Response (`201 Created`):**
+**Response `200 OK`**
 
-    json
-
+```json
 {
-
-"success": true,
-
-"message": "Notice submitted successfully for HOD approval",
-
-"data": {
-
-"\_id": "6745fa18f4a569b91c890199",
-
-"title": "Machine Learning Lab Supplementary Evaluation",
-
-"department": "CSE",
-
-"category": "examination",
-
-"priority": "high",
-
-"status": "pending",
-
-"targetAudience": "2nd Year CSE Students",
-
-"author": {
-
-"name": "Prof. Rajiv Sharma",
-
-"email": "rajiv.sharma@apexuniversity.edu"
-
+  "success": true,
+  "message": "Authentication successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "6745f902f4a569b91c890121",
+    "name": "Dr. Sarah Jenkins",
+    "email": "sarah.jenkins@apexuniversity.edu",
+    "role": "hod",
+    "department": "CSE",
+    "designation": "Head of Department & Professor"
+  }
 }
+```
 
-}
+**Create notice (Faculty) – `POST /api/notices`**
 
-}
-
-### **3. HOD Notice Approval**
-
-`PATCH /api/notices/6745fa18f4a569b91c890199/approve`
-
--   **Header:** `Authorization: Bearer <HOD_TOKEN>`
-
-**Response (`200 OK`):**
-
-    json
-
+```json
 {
-
-"success": true,
-
-"message": "Notice 'Machine Learning Lab Supplementary Evaluation' has
-been approved and published",
-
-"data": {
-
-"\_id": "6745fa18f4a569b91c890199",
-
-"status": "approved",
-
-"publishedAt": "2026-11-26T11:15:00.000Z"
-
+  "title": "Machine Learning Lab Supplementary Evaluation",
+  "content": "Make-up laboratory exam will be held in Room 204 on Friday at 2:00 PM.",
+  "department": "CSE",
+  "category": "examination",
+  "priority": "high",
+  "targetAudience": "2nd Year CSE Students"
 }
+```
 
-}
+**Response `201 Created`**
 
-### **4. Admin Dashboard Metrics**
-
-`GET /api/dashboard/admin`
-
--   **Header:** `Authorization: Bearer <ADMIN_TOKEN>`
-
-**Response (`200 OK`):**
-
-    json
-
+```json
 {
-
-"success": true,
-
-"data": {
-
-"summary": {
-
-"totalDepartments": 6,
-
-"totalStudents": 4250,
-
-"totalFaculty": 180,
-
-"totalNotices": 14,
-
-"pendingNoticesCount": 2,
-
-"approvedNoticesCount": 12
-
-},
-
-"charts": {
-
-"departmentNotices": \[
-
-{ "department": "CSE", "published": 6, "pending": 2, "views": 3540 },
-
-{ "department": "ECE", "published": 2, "pending": 0, "views": 840 }
-
-\],
-
-"categoryDistribution": \[
-
-{ "name": "Examination", "count": 4, "value": 33, "color": "#ef4444" },
-
-{ "name": "Events", "count": 3, "value": 25, "color": "#8b5cf6" }
-
-\]
-
+  "success": true,
+  "message": "Notice submitted successfully for HOD approval",
+  "data": {
+    "_id": "6745fa18f4a569b91c890199",
+    "title": "Machine Learning Lab Supplementary Evaluation",
+    "department": "CSE",
+    "category": "examination",
+    "priority": "high",
+    "status": "pending"
+  }
 }
+```
 
+**Approve notice (HOD) – `PATCH /api/notices/:id/approve`**
+
+```json
+{
+  "success": true,
+  "message": "Notice has been approved and published",
+  "data": {
+    "_id": "6745fa18f4a569b91c890199",
+    "status": "approved",
+    "publishedAt": "2026-11-26T11:15:00.000Z"
+  }
 }
+```
 
-}
+### 5.8 HTTP Status Codes Used
 
-Detailed API reference documentation is also available in
-**`backend/README.md`**.
+| Code | Meaning |
+|------|---------|
+| 200 | OK |
+| 201 | Created |
+| 400 | Validation error / bad request |
+| 401 | Unauthenticated |
+| 403 | Forbidden (role or department violation) |
+| 404 | Resource not found |
+| 409 | Conflict (e.g. duplicate bookmark / email) |
+| 500 | Internal server error |
 
-PS
-C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project\>
-cd .`\backend`{=tex} PS
-C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}\>
-npm install up to date, audited 133 packages in 2s 24 packages are
-looking for funding run \`npm fund\` for details found 0 vulnerabilities
-PS
-C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}\>
-npm run seed \> digital-notice-board-backend@1.0.0 seed \> node
-utils/seed.js [Seeding](Creating%20audit%20logs...): Connecting to
-MongoDB... [Seeding](Creating%20audit%20logs...): Clearing existing
-database collections... [Seeding](Creating%20audit%20logs...): Creating
-academic departments... [Seeding](Creating%20audit%20logs...): Creating
-institutional users with hashed passwords...
-[Seeding](Creating%20audit%20logs...): Populating department circulars
-and notices... [Seeding](Creating%20audit%20logs...): Creating initial
-bookmarks for student user... [Seeding](Creating%20audit%20logs...):
-Creating audit logs...
-====================================================== ✅ DATABASE
-SEEDING COMPLETED SUCCESSFULLY!
-====================================================== Pre-configured
-User Credentials (Password: password123): 1. Admin:
-admin@apexuniversity.edu (Super Admin) 2. HOD:
-sarah.jenkins@apexuniversity.edu (HOD - CSE) 3. Faculty:
-rajiv.sharma@apexuniversity.edu (Faculty - CSE) 4. Student:
-danielle.attah@student.apex.edu (Student - CSE)
+---
 
+## 6. Recommended Development Phases
 
-------------------------------------------------------------------------
+| Phase | Development | Duration |
+|:-----:|-------------|----------|
+| 1 | Requirements analysis and UI design | 2 days |
+| 2 | Frontend development (pages, components, routing, charts) | 1 week |
+| 3 | Authentication and user management (JWT, RBAC, roles) | 1 week |
+| 4 | Department, notice, bookmark and dashboard APIs | 1 week |
+| 5 | Frontend–backend integration | 3 days |
+| 6 | Testing and deployment | 2 days |
 
-### **You can now start the server:**
+> Durations are estimates. Adjust them to match your actual project timeline.
 
-In your PowerShell terminal inside `backend\`:
+---
 
-    powershell
+## 7. How to Run the Project
 
-npm start
+### Prerequisites
 
-*(Or use `npm run dev` to run with auto-reload).*
+- Node.js (LTS) and npm
+- MongoDB (local or Atlas)
 
-You will see:
+### Backend
 
-    [Server Running]: Notice Board API listening on port 5000 in development mode
+```powershell
+cd backend
+npm install
+copy .env.example .env      # then fill in MONGO_URI and JWT_SECRET
+npm run seed                # seed demo departments, users and notices
+npm start                   # or: npm run dev
+```
 
-------------------------------------------------------------------------
+Server runs at **http://localhost:5000**
 
-> **Tip (for the future):** If port `5000` ever gets stuck by a stray
-> Node process on Windows, you can free it instantly with this one-line
-> command:
->
->     powershell
->
-> Stop-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess
-> -Force
+Run automated API tests:
 
-ye sidebaar overlapp kaar raha hai isko imrove karo
+```powershell
+npm test
+```
 
-Aapke screenshot se problem exactly identify ho gayi hai.
+### Frontend
 
-### **Problem kya tha?**
+```powershell
+cd frontend
+npm install
+npm run dev
+```
 
-Screen par jo white box sidebar aur dashboard ke upar overlap ho raha
-tha, wo **"Draft New Notice" ka Modal** tha. CSS specificity ke karan
-native `<dialog>` par `.flex` class lagi hui thi, jiski wajah se browser
-modal ko close hone par bhi hide nahi kar pa raha tha (`display: flex`
-ne browser ki default `display: none` property ko override kar diya
-tha). Is wajah se modal hamesha screen par open reh kar sidebar aur
-content ko overlap kar raha tha.
+Open **http://localhost:5173/**
 
-------------------------------------------------------------------------
+Production build check:
 
-### **Key Improvements:**
+```powershell
+npm run build
+npm run preview
+```
 
-1.  **Modal Visibility Fix (`CreateNoticeModal.jsx`)**:
-    -   `if (!isOpen) return null;` lagaya gaya hai. Jab tak create
-        button par click nahi kiya jayega, modal DOM me bilkul render
-        nahi hoga.
-    -   Jab modal open hoga, wo screen ke bilkul **center me smooth dark
-        backdrop overlay** (`bg-slate-900/50 backdrop-blur-xs`) ke sath
-        aayega.
-    -   `Esc` key dabane ya bahar backdrop par click karne par modal
-        automatically smoothly close ho jayega.
-2.  **Sidebar & Navbar Layout Clean-up (`Navbar.jsx`)**:
-    -   Desktop view par Navbar ke andar se duplicate "Apex Portal" logo
-        ko hide kar diya gaya hai kyunki Sidebar me already logo visible
-        rehta hai.
-    -   Ab sidebar aur main content ke beech clean spacing hai aur koi
-        bhi element ek dusre ko overlap nahi karega.
-3.  **Responsive Mobile Drawer**:
-    -   Mobile ya tablet screen par sidebar drawer ki tarah slide-in
-        hoga aur link click karne ya bahar tap karne par band ho jayega.
+> **Tip (Windows):** if port 5000 is stuck, free it with:
+> `Stop-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess -Force`
 
-------------------------------------------------------------------------
+### Environment Variables (`backend/.env`)
 
-### **Ab Browser me check karein:**
+```
+PORT=5000
+MONGO_URI=<your MongoDB connection string>
+JWT_SECRET=<a long random secret>
+JWT_EXPIRES_IN=7d
+```
 
-Aap apne browser par jaakar page ko **Refresh (`Ctrl + F5` ya `F5`)**
-karein: 👉 **`http://localhost:5173/dashboard/student`**
+---
 
-Ab sidebar clean, professional aur bina kisi overlap ke perfectly render
-hoga!
+## 8. Demo Accounts
+
+All demo accounts use the password `password123`.
+
+| Role | Name | Email | Department |
+|------|------|-------|-----------|
+| Super Admin | Dr. Alistair Vance | `admin@apexuniversity.edu` | All |
+| HOD | Dr. Sarah Jenkins | `sarah.jenkins@apexuniversity.edu` | CSE |
+| Faculty | Prof. Rajiv Sharma | `rajiv.sharma@apexuniversity.edu` | CSE |
+| Student | Danielle Attah | `danielle.attah@student.apex.edu` | CSE |
+
+> ⚠️ These credentials are for demo and testing only. Change them before any real deployment.
+
+---
+
+## 🙌 Team
+
+- **Ankit Kumar** – 2400320100202
+- **Alok Kumar** – 2400320100146
