@@ -909,54 +909,7 @@ admin@apexuniversity.edu (Super Admin) 2. HOD:
 sarah.jenkins@apexuniversity.edu (HOD - CSE) 3. Faculty:
 rajiv.sharma@apexuniversity.edu (Faculty - CSE) 4. Student:
 danielle.attah@student.apex.edu (Student - CSE)
-====================================================== PS
-C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}\>
-npm start \> digital-notice-board-backend@1.0.0 start \> node server.js
-node:events:486 throw er; // Unhandled 'error' event \^ Error: listen
-EADDRINUSE: address already in use :::5000 at Server.setupListenHandle
-\[as \_listen2\] (node:net:1940:16) at listenInCluster
-(node:net:1997:12) at Server.listen (node:net:2102:7) at app.listen
-(C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}`\node`{=tex}\_modules`\express`{=tex}`\lib`{=tex}`\application`{=tex}.js:635:24)
-at Object.\<anonymous\>
-(C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}`\server`{=tex}.js:75:20)
-at Module.\_compile (node:internal/modules/cjs/loader:1761:14) at
-Object..js (node:internal/modules/cjs/loader:1893:10) at Module.load
-(node:internal/modules/cjs/loader:1481:32) at Module.\_load
-(node:internal/modules/cjs/loader:1300:12) at TracingChannel.traceSync
-(node:diagnostics_channel:328:14) Emitted 'error' event on Server
-instance at: at emitErrorNT (node:net:1976:8) at
-process.processTicksAndRejections
-(node:internal/process/task_queues:89:21) { code: 'EADDRINUSE', errno:
--4091, syscall: 'listen', address: '::', port: 5000 } Node.js v24.13.0
-PS
-C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}\>
-npm start \> digital-notice-board-backend@1.0.0 start \> node server.js
-node:events:486 throw er; // Unhandled 'error' event \^ Error: listen
-EADDRINUSE: address already in use :::5000 at Server.setupListenHandle
-\[as \_listen2\] (node:net:1940:16) at listenInCluster
-(node:net:1997:12) at Server.listen (node:net:2102:7) at app.listen
-(C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}`\node`{=tex}\_modules`\express`{=tex}`\lib`{=tex}`\application`{=tex}.js:635:24)
-at Object.\<anonymous\>
-(C:`\Users`{=tex}`\Ankit `{=tex}Kumar`\OneDrive`{=tex}`\Desktop`{=tex}`\FSD`{=tex}-Project`\backend`{=tex}`\server`{=tex}.js:75:20)
-at Module.\_compile (node:internal/modules/cjs/loader:1761:14) at
-Object..js (node:internal/modules/cjs/loader:1893:10) at Module.load
-(node:internal/modules/cjs/loader:1481:32) at Module.\_load
-(node:internal/modules/cjs/loader:1300:12) at TracingChannel.traceSync
-(node:diagnostics_channel:328:14) Emitted 'error' event on Server
-instance at: at emitErrorNT (node:net:1976:8) at
-process.processTicksAndRejections
-(node:internal/process/task_queues:89:21) { code: 'EADDRINUSE', errno:
--4091, syscall: 'listen', address: '::', port: 5000 } Node.js v24.13.0
 
-The error `EADDRINUSE: address already in use :::5000` occurred because
-the backend server process I previously launched in the background to
-run the automated test suite was still listening on port `5000`.
-
-### **What I have done:**
-
-1.  **Terminated the background process** that was holding port `5000`.
-2.  **Verified port availability** --- Port `5000` is now completely
-    free and ready.
 
 ------------------------------------------------------------------------
 
