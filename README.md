@@ -10,6 +10,7 @@
 **Project Type:** Full Stack Development (FSD)
 **Project Title:** Department-Wise Digital Notice Board System
 **Tech Stack:** React.js · Vite · Tailwind CSS · Node.js · Express.js · MongoDB · Mongoose · JWT · bcrypt
+**🌐 Live Demo:** [https://department-wise-digital-notice-boar.vercel.app/](https://department-wise-digital-notice-boar.vercel.app/)
 
 ---
 
@@ -21,8 +22,9 @@
 4. [Database Design](#4-database-design)
 5. [REST API Design](#5-rest-api-design)
 6. [Recommended Development Phases](#6-recommended-development-phases)
-7. [How to Run the Project](#7-how-to-run-the-project)
-8. [Demo Accounts](#8-demo-accounts)
+7. [Deployment](#7-deployment)
+8. [How to Run the Project](#8-how-to-run-the-project)
+9. [Demo Accounts](#9-demo-accounts)
 
 ---
 
@@ -676,7 +678,17 @@ erDiagram
 
 ---
 
-## 7. How to Run the Project
+## 7. Deployment
+
+| Part | Platform | Link |
+|------|----------|------|
+| Frontend (React + Vite) | Vercel | [department-wise-digital-notice-boar.vercel.app](https://department-wise-digital-notice-boar.vercel.app/) |
+
+You can use the 1-click demo buttons on the login page of the live site to try each role (Admin, HOD, Faculty, Student).
+
+---
+
+## 8. How to Run the Project
 
 ### Prerequisites
 
@@ -732,7 +744,7 @@ JWT_EXPIRES_IN=7d
 
 ---
 
-## 8. Demo Accounts
+## 9. Demo Accounts
 
 All demo accounts use the password `password123`.
 
