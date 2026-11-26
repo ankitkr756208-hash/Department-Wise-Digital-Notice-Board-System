@@ -10,6 +10,7 @@ import NoticeDrawer from '../components/NoticeDrawer';
 import { useNotices } from '../context/NoticeContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import abesCampusHd from '../assets/abes-campus-hd.jpg';
 
 export default function FacultyDashboard() {
   const { user } = useAuth();
@@ -53,39 +54,50 @@ export default function FacultyDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-xs">
-        <div className="flex items-center gap-4">
+      {/* Welcome Banner with ABES HD Background */}
+      <div className="relative rounded-3xl p-6 sm:p-8 text-white shadow-xl overflow-hidden border border-slate-200/20">
+        <div className="absolute inset-0 z-0">
           <img
-            src={user?.avatar || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150'}
-            alt={user?.name}
-            className="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-100 shadow-xs"
+            src={abesCampusHd}
+            alt="ABES Engineering College Campus"
+            className="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.15]"
           />
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-                Welcome, {user?.name || 'Professor'}
-              </h1>
-              <span className="text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded border border-indigo-200">
-                Faculty Portal
-              </span>
-            </div>
-            <p className="text-xs text-slate-500 mt-1">
-              {user?.designation || 'Associate Professor'} • Department of {user?.department || 'Computer Science'}
-            </p>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-indigo-950/85 to-blue-950/80" />
         </div>
 
-        <button
-          onClick={() => {
-            setEditingNotice(null);
-            setCreateModalOpen(true);
-          }}
-          className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition shadow-sm flex items-center justify-center gap-2 shrink-0"
-        >
-          <PlusCircle className="w-4 h-4" />
-          <span>Draft New Notice</span>
-        </button>
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <img
+              src={user?.avatar || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150'}
+              alt={user?.name}
+              className="w-16 h-16 rounded-2xl object-cover border-2 border-white/20 shadow-sm"
+            />
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-bold text-white">
+                  Welcome, {user?.name || 'Professor'}
+                </h1>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 text-blue-200 px-2 py-0.5 rounded border border-blue-400/30">
+                  Faculty Portal
+                </span>
+              </div>
+              <p className="text-xs text-slate-200 mt-1">
+                {user?.designation || 'Associate Professor'} • Department of {user?.department || 'Computer Science'}
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => {
+              setEditingNotice(null);
+              setCreateModalOpen(true);
+            }}
+            className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition shadow-md flex items-center justify-center gap-2 shrink-0"
+          >
+            <PlusCircle className="w-4 h-4" />
+            <span>Draft New Notice</span>
+          </button>
+        </div>
       </div>
 
       {/* Metric Cards */}

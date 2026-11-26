@@ -7,6 +7,7 @@ import {
 import { departments } from '../data/dummyData';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import abesLogo from '../assets/abes-logo.png';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -47,8 +48,9 @@ export default function RegisterPage() {
     }
 
     if (roleType === 'faculty_request') {
-      if (formData.adminPasscode !== 'APEX2026') {
-        showToast('Invalid Faculty Access Token. Contact Department Office.', 'error');
+      const code = formData.adminPasscode.toUpperCase().trim();
+      if (code !== 'ABES2026' && code !== 'APEX2026') {
+        showToast('Invalid Faculty Access Token. Enter ABES2026 or contact office.', 'error');
         return;
       }
     }
@@ -67,15 +69,22 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-10 sm:px-6 lg:px-8 font-sans">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link to="/" className="inline-flex items-center gap-2.5 mb-3 group">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-            <Layers className="w-5 h-5" />
+        <Link to="/" className="inline-flex flex-col items-center gap-2 mb-3 group">
+          <img
+            src={abesLogo}
+            alt="ABES Logo"
+            className="h-16 w-auto object-contain bg-white rounded-xl p-1.5 shadow-sm group-hover:scale-105 transition-transform"
+          />
+          <div>
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight block">
+              ABES Engineering College
+            </span>
+            <span className="text-xs uppercase font-bold tracking-wider text-blue-600 block">
+              Department-Wise Digital Notice Board
+            </span>
           </div>
-          <span className="text-xl font-bold text-slate-900 tracking-tight">
-            Apex Digital Board
-          </span>
         </Link>
-        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="text-xl font-bold text-slate-800 tracking-tight mt-2">
           Create Your Portal Account
         </h2>
         <p className="mt-1 text-xs text-slate-500">
@@ -222,7 +231,7 @@ export default function RegisterPage() {
                 <input
                   type="text"
                   required
-                  placeholder="Enter APEX2026"
+                  placeholder="Enter ABES2026"
                   value={formData.adminPasscode}
                   onChange={(e) => setFormData({ ...formData, adminPasscode: e.target.value })}
                   className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-purple-300 bg-purple-50/50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 font-mono"

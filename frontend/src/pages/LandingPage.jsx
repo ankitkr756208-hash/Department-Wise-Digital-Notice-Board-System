@@ -10,6 +10,8 @@ import NoticeCard from '../components/NoticeCard';
 import NoticeDrawer from '../components/NoticeDrawer';
 import { useAuth } from '../context/AuthContext';
 import Footer from '../components/Footer';
+import abesLogo from '../assets/abes-logo.png';
+import abesCampusHd from '../assets/abes-campus-hd.jpg';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -51,18 +53,20 @@ export default function LandingPage() {
       )}
 
       {/* Header / Navbar */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5">
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3 transition-all">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-sm">
-              <Layers className="w-5 h-5" />
-            </div>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img
+              src={abesLogo}
+              alt="ABES Engineering College Logo"
+              className="h-11 w-auto object-contain bg-white rounded-xl p-1 shadow-xs group-hover:scale-105 transition-transform"
+            />
             <div>
-              <span className="text-lg font-bold text-slate-900 leading-tight block">
-                Apex Institute
+              <span className="text-base sm:text-lg font-extrabold text-slate-900 leading-tight block">
+                ABES Engineering College
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider text-blue-600 block">
-                Digital Notice Board System
+                Department-Wise Digital Notice Board
               </span>
             </div>
           </Link>
@@ -91,38 +95,50 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-slate-50 to-slate-100 border-b border-slate-200/70">
-        <div className="max-w-7xl mx-auto">
+      {/* Hero Section with ABES Campus HD Background (Clean & Fully Responsive) */}
+      <section className="relative overflow-hidden pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white border-b border-slate-800">
+        {/* Background Campus HD Photo with Cinematic Clean Overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <img
+            src={abesCampusHd}
+            alt="ABES Engineering College Campus"
+            className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.12]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-900/65 to-slate-950/95" />
+          <div className="absolute inset-0 bg-radial from-transparent via-slate-950/30 to-slate-950/80" />
+        </div>
+
+        {/* Foreground Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>Next-Generation College Communication Platform</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-blue-200 border border-blue-400/30 backdrop-blur-md shadow-lg transition">
+              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+              <span>ABES Engineering College • AKTU Code: 032 • NAAC 'A' Grade</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] drop-shadow-md">
               Department-Wise <br />
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300 bg-clip-text text-transparent">
                 Digital Notice Board
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              Replace outdated paper pin-boards with an intelligent, role-governed digital broadcast network. Instant circular approvals, priority alerts, and department isolation for students, faculty, and administration.
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
+              Official institutional communication platform for ABES Engineering College. Replace physical pin-boards with role-governed circular approvals, real-time alerts, and dedicated department streams.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
               <Link
                 to="/notices"
-                className="w-full sm:w-auto px-6 py-3.5 text-sm font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold rounded-xl bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2"
               >
                 <span>Browse All Notices</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/login"
-                className="w-full sm:w-auto px-6 py-3.5 text-sm font-semibold rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 transition-all shadow-xs flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md transition-all shadow-md flex items-center justify-center gap-2"
               >
                 <span>Staff & Student Login</span>
               </Link>
@@ -130,59 +146,59 @@ export default function LandingPage() {
 
             {/* One-Click Quick Demo Launcher */}
             <div className="pt-6">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+              <p className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2.5">
                 Instant Interactive Demo (1-Click Role Login):
               </p>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <button
                   onClick={() => handleQuickDemo('admin')}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-rose-500/20 text-rose-200 border border-rose-400/40 hover:bg-rose-500/30 backdrop-blur-sm transition flex items-center gap-1.5"
                 >
-                  <Shield className="w-3.5 h-3.5" />
+                  <Shield className="w-3.5 h-3.5 text-rose-400" />
                   <span>Super Admin</span>
                 </button>
                 <button
                   onClick={() => handleQuickDemo('hod')}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-purple-500/20 text-purple-200 border border-purple-400/40 hover:bg-purple-500/30 backdrop-blur-sm transition flex items-center gap-1.5"
                 >
-                  <Building2 className="w-3.5 h-3.5" />
-                  <span>HOD (Computer Science)</span>
+                  <Building2 className="w-3.5 h-3.5 text-purple-400" />
+                  <span>HOD (Dr. Shruti Gupta)</span>
                 </button>
                 <button
                   onClick={() => handleQuickDemo('faculty')}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-indigo-500/20 text-indigo-200 border border-indigo-400/40 hover:bg-indigo-500/30 backdrop-blur-sm transition flex items-center gap-1.5"
                 >
-                  <Users className="w-3.5 h-3.5" />
-                  <span>Faculty (Prof. Sharma)</span>
+                  <Users className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Faculty (Prof. Rajiv Sharma)</span>
                 </button>
                 <button
                   onClick={() => handleQuickDemo('student')}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500/20 text-emerald-200 border border-emerald-400/40 hover:bg-emerald-500/30 backdrop-blur-sm transition flex items-center gap-1.5"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Student (Danielle Attah)</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Student (Ankit Kumar)</span>
                 </button>
               </div>
             </div>
           </div>
 
           {/* Quick Metrics Banner */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm max-w-4xl mx-auto">
+          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 shadow-xl max-w-4xl mx-auto text-slate-800">
             <div className="text-center p-2">
               <span className="text-2xl sm:text-3xl font-extrabold text-blue-600 block">6</span>
-              <span className="text-xs font-medium text-slate-500 mt-1 block">Academic Departments</span>
+              <span className="text-xs font-medium text-slate-600 mt-1 block">Academic Departments</span>
             </div>
-            <div className="text-center p-2 border-l border-slate-100">
-              <span className="text-2xl sm:text-3xl font-extrabold text-indigo-600 block">4,250+</span>
-              <span className="text-xs font-medium text-slate-500 mt-1 block">Active Students</span>
+            <div className="text-center p-2 border-l border-slate-200">
+              <span className="text-2xl sm:text-3xl font-extrabold text-indigo-600 block">4,500+</span>
+              <span className="text-xs font-medium text-slate-600 mt-1 block">Active Students</span>
             </div>
-            <div className="text-center p-2 border-l border-slate-100">
+            <div className="text-center p-2 border-l border-slate-200">
               <span className="text-2xl sm:text-3xl font-extrabold text-purple-600 block">180+</span>
-              <span className="text-xs font-medium text-slate-500 mt-1 block">Faculty Members</span>
+              <span className="text-xs font-medium text-slate-600 mt-1 block">Faculty Members</span>
             </div>
-            <div className="text-center p-2 border-l border-slate-100">
+            <div className="text-center p-2 border-l border-slate-200">
               <span className="text-2xl sm:text-3xl font-extrabold text-emerald-600 block">99.8%</span>
-              <span className="text-xs font-medium text-slate-500 mt-1 block">Notice Reach Rate</span>
+              <span className="text-xs font-medium text-slate-600 mt-1 block">Notice Reach Rate</span>
             </div>
           </div>
         </div>
@@ -242,14 +258,14 @@ export default function LandingPage() {
                     <span className="w-3 h-3 rounded-full bg-rose-500 inline-block" />
                     <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
                     <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" />
-                    <span className="text-xs font-mono text-slate-300 ml-2">noticeboard.apexuniversity.edu</span>
+                    <span className="text-xs font-mono text-slate-300 ml-2">noticeboard.abes.ac.in</span>
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-wider bg-blue-600 px-2 py-0.5 rounded">Live Intranet</span>
                 </div>
                 <div className="p-5 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-xs font-bold text-slate-800">Hi, Danielle Attah</span>
+                      <span className="text-xs font-bold text-slate-800">Hi, Ankit Kumar</span>
                       <p className="text-[11px] text-slate-400">B.Tech CSE • Sem 6</p>
                     </div>
                     <span className="text-xs font-semibold px-2 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
@@ -262,7 +278,7 @@ export default function LandingPage() {
                       <span className="text-[10px] text-rose-500">Today, 09:30 AM</span>
                     </div>
                     <p className="text-xs font-medium text-slate-800">Midterm Examination Timetable Released - Fall 2026</p>
-                    <p className="text-[11px] text-slate-500 mt-1">2 Attachments • Signed by Dr. Alistair Vance</p>
+                    <p className="text-[11px] text-slate-500 mt-1">2 Attachments • Signed by Dr. Sanjay Kumar Agarwal</p>
                   </div>
                   <div className="p-3.5 rounded-xl border border-slate-200 bg-slate-50">
                     <div className="flex items-center justify-between text-xs mb-1">

@@ -12,6 +12,7 @@ import { useNotices } from '../context/NoticeContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
+import abesCampusHd from '../assets/abes-campus-hd.jpg';
 
 export default function StudentDashboard() {
   const { user } = useAuth();
@@ -46,8 +47,18 @@ export default function StudentDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-800 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+      {/* Welcome Banner with ABES Campus HD Background */}
+      <div className="rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-slate-200/20">
+        {/* Background Campus HD Image with Gradient */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={abesCampusHd}
+            alt="ABES Engineering College Campus"
+            className="w-full h-full object-cover object-center filter brightness-[0.42] contrast-[1.15]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-indigo-950/85 to-slate-900/75" />
+        </div>
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
@@ -55,11 +66,11 @@ export default function StudentDashboard() {
                 Undergraduate Student Portal
               </span>
               <span className="text-[11px] font-semibold bg-emerald-400/30 text-emerald-200 px-2 py-0.5 rounded-full border border-emerald-300/30">
-                Roll #{user?.enrollmentNo || '21CS042'}
+                Roll #{user?.enrollmentNo || '2100320100042'}
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Hi, {user?.name || 'Danielle Attah'}
+              Hi, {user?.name || 'Ankit Kumar'}
             </h1>
             <p className="text-xs sm:text-sm text-blue-100 max-w-xl leading-relaxed">
               B.Tech in {studentDept === 'CSE' ? 'Computer Science & Engineering' : studentDept} • Semester 6 (Section A). You have {relevantNotices.length} active department announcements.
@@ -229,11 +240,11 @@ export default function StudentDashboard() {
               </h4>
             </div>
             <p className="text-xs text-indigo-950/80 leading-relaxed">
-              For any conflict in examination dates or attendance discrepancies, contact your department coordinator Dr. Sarah Jenkins.
+              For any conflict in examination dates or attendance discrepancies, contact your department coordinator Dr. Shruti Gupta.
             </p>
             <div className="pt-2">
               <a
-                href="mailto:hod.cse@apexuniversity.edu"
+                href="mailto:hod.cse2@abes.ac.in"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:underline"
               >
                 <span>Email CSE Department Office</span>

@@ -12,6 +12,7 @@ import { facultyMembers, departments } from '../data/dummyData';
 import { useNotices } from '../context/NoticeContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import abesCampusHd from '../assets/abes-campus-hd.jpg';
 
 export default function HODDashboard() {
   const { user } = useAuth();
@@ -57,8 +58,17 @@ export default function HODDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Department Header Banner */}
-      <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-indigo-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+      {/* Department Header Banner with ABES HD Background */}
+      <div className="rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-slate-200/20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={abesCampusHd}
+            alt="ABES Engineering College Campus"
+            className="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.15]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-indigo-950/85 to-slate-900/80" />
+        </div>
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">

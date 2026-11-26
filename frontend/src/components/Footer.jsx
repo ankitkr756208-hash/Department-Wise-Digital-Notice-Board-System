@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layers, ShieldCheck, Mail, Phone, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Mail, Phone, ExternalLink, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import abesLogo from '../assets/abes-logo.png';
 
 export default function Footer() {
   return (
@@ -9,20 +10,27 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Col */}
           <div className="space-y-3 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                <Layers className="w-4 h-4" />
+            <div className="flex items-center gap-2.5">
+              <img
+                src={abesLogo}
+                alt="ABES Logo"
+                className="h-10 w-auto object-contain bg-white rounded-lg p-0.5"
+              />
+              <div>
+                <span className="font-bold text-slate-900 text-sm block leading-tight">
+                  ABES Engg. College
+                </span>
+                <span className="text-[10px] text-blue-600 font-semibold tracking-wider uppercase block">
+                  Digital Notice Board
+                </span>
               </div>
-              <span className="font-bold text-slate-900 text-sm">
-                Apex Digital Portal
-              </span>
             </div>
             <p className="text-slate-500 text-xs leading-relaxed">
-              Real-time, department-wise digital notice board and campus communication system for university excellence.
+              Official real-time, department-wise digital notice board and institutional communication system for ABES Engineering College, Ghaziabad.
             </p>
             <div className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md text-[11px] font-semibold w-fit border border-emerald-200">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Certified Campus Intranet</span>
+              <span>AKTU Affiliated • ISO 9001:2015</span>
             </div>
           </div>
 
@@ -92,15 +100,15 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-slate-400" />
-                <span>support.notices@apexuniversity.edu</span>
+                <span>notices@abes.ac.in</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-slate-400" />
-                <span>+1 (555) 234-5678 (Ext. 402)</span>
+                <span>+91 120 713 5111 / 5112</span>
               </li>
               <li className="pt-1">
                 <span className="text-[11px] text-slate-400 block">
-                  Office of Academic Dean • North Campus Block
+                  19th KM Stone, NH-09, Ghaziabad, UP 201009
                 </span>
               </li>
             </ul>
@@ -108,7 +116,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
-          <p>© {new Date().getFullYear()} Apex Institute of Technology & Engineering. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ABES Engineering College, Ghaziabad. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#privacy" className="hover:text-slate-600">Privacy Policy</a>
             <a href="#terms" className="hover:text-slate-600">Terms of Governance</a>

@@ -3,9 +3,9 @@ export const departments = [
     id: 'dept-cse',
     code: 'CSE',
     name: 'Computer Science & Engineering',
-    hodName: 'Dr. Sarah Jenkins',
-    hodEmail: 'hod.cse@apexuniversity.edu',
-    hodAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+    hodName: 'Dr. Shruti Gupta',
+    hodEmail: 'hod.cse2@abes.ac.in',
+    hodAvatar: '/hod-shruti-gupta.png',
     facultyCount: 38,
     studentCount: 1120,
     activeNoticesCount: 14,
@@ -20,8 +20,8 @@ export const departments = [
     id: 'dept-ece',
     code: 'ECE',
     name: 'Electronics & Communication',
-    hodName: 'Dr. Michael Chen',
-    hodEmail: 'hod.ece@apexuniversity.edu',
+    hodName: 'Dr. Amit Sinha',
+    hodEmail: 'hod.ece@abes.ac.in',
     hodAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
     facultyCount: 32,
     studentCount: 890,
@@ -37,8 +37,8 @@ export const departments = [
     id: 'dept-me',
     code: 'ME',
     name: 'Mechanical Engineering',
-    hodName: 'Dr. Robert Torres',
-    hodEmail: 'hod.me@apexuniversity.edu',
+    hodName: 'Dr. Manoj Kumar',
+    hodEmail: 'hod.me@abes.ac.in',
     hodAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
     facultyCount: 28,
     studentCount: 740,
@@ -54,9 +54,9 @@ export const departments = [
     id: 'dept-civil',
     code: 'Civil',
     name: 'Civil & Infrastructure Engineering',
-    hodName: 'Dr. Elizabeth Hayes',
-    hodEmail: 'hod.civil@apexuniversity.edu',
-    hodAvatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+    hodName: 'Dr. Meenakshi Sharma',
+    hodEmail: 'hod.civil@abes.ac.in',
+    hodAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
     facultyCount: 24,
     studentCount: 610,
     activeNoticesCount: 6,
@@ -72,7 +72,7 @@ export const departments = [
     code: 'Biotech',
     name: 'Biotechnology & Bioinformatics',
     hodName: 'Dr. Ananya Patel',
-    hodEmail: 'hod.bt@apexuniversity.edu',
+    hodEmail: 'hod.bt@abes.ac.in',
     hodAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     facultyCount: 22,
     studentCount: 460,
@@ -88,8 +88,8 @@ export const departments = [
     id: 'dept-mgmt',
     code: 'Management',
     name: 'School of Management & Business',
-    hodName: 'Dr. David Sterling',
-    hodEmail: 'hod.mgmt@apexuniversity.edu',
+    hodName: 'Dr. Rakesh Kumar Sharma',
+    hodEmail: 'hod.mgmt@abes.ac.in',
     hodAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
     facultyCount: 26,
     studentCount: 580,
@@ -106,54 +106,54 @@ export const departments = [
 export const demoUsers = {
   admin: {
     id: 'usr-admin-1',
-    name: 'Dr. Alistair Vance',
-    email: 'admin@apexuniversity.edu',
+    name: 'Dr. Sanjay Kumar Agarwal',
+    email: 'admin@abes.ac.in',
     role: 'admin',
     department: 'All',
-    designation: 'Director of Academic Affairs & Super Administrator',
-    enrollmentNo: 'ADM-9021',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-    phone: '+1 (555) 234-5678',
+    designation: 'Director & Super Administrator',
+    enrollmentNo: 'DIR-001',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    phone: '+91 120 713 5111',
     joinedDate: 'August 2018'
   },
   hod: {
     id: 'usr-hod-1',
-    name: 'Dr. Sarah Jenkins',
-    email: 'sarah.jenkins@apexuniversity.edu',
+    name: 'Dr. Shruti Gupta',
+    email: 'hod.cse2@abes.ac.in',
     role: 'hod',
     department: 'CSE',
-    designation: 'Head of Department & Professor',
-    enrollmentNo: 'FAC-CSE-001',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
-    phone: '+1 (555) 345-6789',
+    designation: 'HOD-CSE-2 & Professor',
+    enrollmentNo: 'FAC-CSE-002',
+    avatar: '/hod-shruti-gupta.png',
+    phone: '+91 120 713 5122',
     joinedDate: 'July 2016'
   },
   faculty: {
     id: 'usr-fac-1',
     name: 'Prof. Rajiv Sharma',
-    email: 'rajiv.sharma@apexuniversity.edu',
+    email: 'rajiv.sharma@abes.ac.in',
     role: 'faculty',
     department: 'CSE',
     designation: 'Associate Professor (Data Systems)',
     enrollmentNo: 'FAC-CSE-018',
     avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80',
-    phone: '+1 (555) 456-7890',
+    phone: '+91 120 713 5133',
     joinedDate: 'January 2020'
   },
   student: {
     id: 'usr-stu-1',
-    name: 'Danielle Attah',
-    email: 'danielle.attah@student.apex.edu',
+    name: 'Ankit Kumar',
+    email: 'ankit.kumar@student.abes.ac.in',
     role: 'student',
     department: 'CSE',
-    designation: 'Undergraduate Student (Semester 6)',
-    enrollmentNo: '21CS042',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
-    phone: '+1 (555) 987-6543',
+    designation: 'B.Tech Student (Semester 6, CSE-A)',
+    enrollmentNo: '2100320100042',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+    phone: '+91 98765 43210',
     joinedDate: 'August 2023',
     semester: '6th Semester',
     section: 'CSE-A',
-    cgpa: '8.92'
+    cgpa: '9.15'
   }
 };
 
@@ -180,7 +180,7 @@ For seating arrangements and room allocation queries, kindly contact your respec
     status: 'published',
     targetAudience: 'All Students & Faculty',
     author: {
-      name: 'Dr. Alistair Vance',
+      name: 'Dr. Sanjay Kumar Agarwal',
       role: 'admin',
       designation: 'Controller of Examinations',
       department: 'All',
@@ -208,9 +208,9 @@ For seating arrangements and room allocation queries, kindly contact your respec
   },
   {
     id: 'ntc-102',
-    title: 'Apex Hackathon 2026: 36-Hour National CodeFest Registration Open',
+    title: 'ABES National Hackathon 2026: 36-Hour National CodeFest Registration Open',
     slug: 'apex-hackathon-2026-codefest-registration',
-    content: `The Department of Computer Science & Engineering, in collaboration with the Student ACM & IEEE Student Chapters, is thrilled to announce the 8th Annual Apex Hackathon 2026!
+    content: `The Department of Computer Science & Engineering, in collaboration with the Student ACM & IEEE Student Chapters, is thrilled to announce the 8th Annual ABES National Hackathon 2026!
 
 Event Highlights:
 - 36 hours of non-stop innovation, mentorship, and building
@@ -231,7 +231,7 @@ Shortlisted teams will receive hardware prototyping credits and API access token
     status: 'published',
     targetAudience: 'All Engineering Students',
     author: {
-      name: 'Dr. Sarah Jenkins',
+      name: 'Dr. Shruti Gupta',
       role: 'hod',
       designation: 'HOD - Computer Science',
       department: 'CSE',
@@ -319,7 +319,7 @@ During this maintenance window:
     status: 'published',
     targetAudience: 'ECE Students & Faculty',
     author: {
-      name: 'Dr. Michael Chen',
+      name: 'Dr. Amit Sinha',
       role: 'hod',
       designation: 'HOD - Electronics & Communication',
       department: 'ECE',
@@ -341,9 +341,9 @@ During this maintenance window:
   },
   {
     id: 'ntc-105',
-    title: 'National Holiday Notice: University Campus Closed for Thanksgiving Week',
+    title: 'National Holiday Notice: University Campus Closed for Diwali Festival Week',
     slug: 'national-holiday-campus-closure',
-    content: `In accordance with the State Academic Calendar, Apex University campus including all administrative offices, academic departments, lecture halls, and laboratories will remain closed for Thanksgiving Holiday.
+    content: `In accordance with the State Academic Calendar, ABES Engineering College campus including all administrative offices, academic departments, lecture halls, and laboratories will remain closed for Diwali & National Festival Holiday.
 
 Details:
 - Administrative Offices: Closed from Nov 26 through Nov 29.
@@ -359,7 +359,7 @@ All scheduled classes and departmental reviews will resume as per regular timeta
     status: 'published',
     targetAudience: 'All Students, Faculty & Staff',
     author: {
-      name: 'Dr. Alistair Vance',
+      name: 'Dr. Sanjay Kumar Agarwal',
       role: 'admin',
       designation: 'Registrar & Academic Director',
       department: 'All',
@@ -396,7 +396,7 @@ Trophies, certificates, and athletic scholarship points will be awarded to top p
     status: 'published',
     targetAudience: 'All University Students',
     author: {
-      name: 'Dr. Robert Torres',
+      name: 'Dr. Manoj Kumar',
       role: 'hod',
       designation: 'Chair, University Sports Committee',
       department: 'ME',
@@ -436,7 +436,7 @@ Certificates of completion with industry endorsement will be issued to all parti
     status: 'published',
     targetAudience: 'ME & ECE Students',
     author: {
-      name: 'Dr. Robert Torres',
+      name: 'Dr. Manoj Kumar',
       role: 'hod',
       designation: 'HOD - Mechanical Engineering',
       department: 'ME',
@@ -475,7 +475,7 @@ Students will observe non-destructive ultrasonic concrete testing, piezoelectric
     status: 'published',
     targetAudience: '3rd & 4th Year Civil Students',
     author: {
-      name: 'Dr. Elizabeth Hayes',
+      name: 'Dr. Meenakshi Sharma',
       role: 'hod',
       designation: 'HOD - Civil Engineering',
       department: 'Civil',
@@ -539,21 +539,21 @@ Poster presentation abstracts can be submitted until November 30th. Selected und
     slug: 'mba-executive-speaker-series-fintech',
     content: `The School of Management & Business is excited to present an exclusive Masterclass for MBA and finance students on "Fintech Disruption and Startup Valuation Methodologies in Private Equity".
 
-Distinguished Speaker: Marcus Thorne, Managing Director at Horizon Capital Ventures.
+Distinguished Speaker: Dr. Shailendra Nigam, Managing Director at Horizon Capital Ventures.
 Topics:
 - DCF vs Pre-Money Multiples in Seed vs Growth Equity
 - Regulatory sandboxes for AI-driven credit underwriting
 - Q&A session on summer investment banking internships
 
 Registration is free but prior seat reservation through the student management portal is required.`,
-    excerpt: 'Exclusive masterclass for MBA students with Marcus Thorne, Managing Director at Horizon Capital, discussing PE valuations and Fintech.',
+    excerpt: 'Exclusive masterclass for MBA students with Dr. Shailendra Nigam, Managing Director at Horizon Capital, discussing PE valuations and Fintech.',
     department: 'Management',
     category: 'Events',
     priority: 'Normal',
     status: 'published',
     targetAudience: 'MBA & Business Students',
     author: {
-      name: 'Dr. David Sterling',
+      name: 'Dr. Rakesh Kumar Sharma',
       role: 'hod',
       designation: 'Dean, School of Management',
       department: 'Management',
@@ -613,9 +613,9 @@ Please bring your approved lab manual and university ID card. No further make-up
   },
   {
     id: 'ntc-112',
-    title: 'Call for Student Submissions: Annual University Magazine "The Apex Chronicle"',
+    title: 'Call for Student Submissions: Annual University Magazine "The ABES College Chronicle"',
     slug: 'apex-chronicle-magazine-submissions',
-    content: `The Editorial Board of Apex University is now accepting creative writing, research essays, poetry, technical artwork, and campus photography for the 2026-2027 edition of The Apex Chronicle.
+    content: `The Editorial Board of ABES Engineering College is now accepting creative writing, research essays, poetry, technical artwork, and campus photography for the 2026-2027 edition of The ABES College Chronicle.
 
 Submission Guidelines:
 - Category 1: Fiction & Creative Prose (up to 2,000 words)
@@ -623,7 +623,7 @@ Submission Guidelines:
 - Category 3: Visual Arts, Photography & Digital Illustrations (high-res PNG/TIFF)
 
 Prizes will be awarded for Best Undergraduate Essay and Best Artistic Cover Concept. Submissions should be sent via the student portal editorial link.`,
-    excerpt: 'Submit your creative writing, research essays, and photography for the 2026 edition of The Apex Chronicle magazine.',
+    excerpt: 'Submit your creative writing, research essays, and photography for the 2026 edition of The ABES College Chronicle magazine.',
     department: 'All',
     category: 'General',
     priority: 'Low',
@@ -648,13 +648,13 @@ Prizes will be awarded for Best Undergraduate Essay and Best Artistic Cover Conc
 export const facultyMembers = [
   {
     id: 'fac-1',
-    name: 'Dr. Sarah Jenkins',
+    name: 'Dr. Shruti Gupta',
     designation: 'Professor & Head of Department',
     department: 'CSE',
     specialization: 'Artificial Intelligence & Distributed Systems',
-    email: 'sarah.jenkins@apexuniversity.edu',
+    email: 'hod.cse2@abes.ac.in',
     noticesCount: 16,
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+    avatar: '/hod-shruti-gupta.png',
     status: 'Active'
   },
   {
@@ -681,33 +681,33 @@ export const facultyMembers = [
   },
   {
     id: 'fac-4',
-    name: 'Prof. Alan Turing Morales',
+    name: 'Prof. Vikram Singh',
     designation: 'Assistant Professor',
     department: 'CSE',
     specialization: 'Network Security & Cryptography',
-    email: 'alan.morales@apexuniversity.edu',
+    email: 'vikram.singh@abes.ac.in',
     noticesCount: 5,
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
     status: 'On Leave'
   },
   {
     id: 'fac-5',
-    name: 'Dr. Emily Watson',
+    name: 'Dr. Neha Verma',
     designation: 'Assistant Professor',
     department: 'CSE',
     specialization: 'Human-Computer Interaction & Web Tech',
-    email: 'emily.watson@apexuniversity.edu',
+    email: 'neha.verma@abes.ac.in',
     noticesCount: 9,
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     status: 'Active'
   },
   {
     id: 'fac-6',
-    name: 'Prof. David Vance Jr.',
+    name: 'Prof. Amit Sharma',
     designation: 'Assistant Professor',
     department: 'CSE',
     specialization: 'Operating Systems & Cloud Architecture',
-    email: 'david.vance@apexuniversity.edu',
+    email: 'amit.sharma@abes.ac.in',
     noticesCount: 7,
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
     status: 'Active'
@@ -756,7 +756,7 @@ export const upcomingEvents = [
 export const activityLogs = [
   {
     id: 'act-1',
-    user: 'Dr. Sarah Jenkins',
+    user: 'Dr. Shruti Gupta',
     action: 'Approved Notice',
     target: 'Midterm Practical Exam Timetable',
     time: '12 minutes ago',
@@ -772,15 +772,15 @@ export const activityLogs = [
   },
   {
     id: 'act-3',
-    user: 'Dr. Alistair Vance',
+    user: 'Dr. Sanjay Kumar Agarwal',
     action: 'Published Global Circular',
-    target: 'Thanksgiving Holiday Closure',
+    target: 'Diwali & National Festival Holiday Closure',
     time: '3 hours ago',
     type: 'warning'
   },
   {
     id: 'act-4',
-    user: 'Dr. Michael Chen',
+    user: 'Dr. Amit Sinha',
     action: 'Updated Notice',
     target: 'VLSI Lab Maintenance Window',
     time: '5 hours ago',
@@ -788,7 +788,7 @@ export const activityLogs = [
   },
   {
     id: 'act-5',
-    user: 'Danielle Attah',
+    user: 'Ankit Kumar',
     action: 'Downloaded Attachment',
     target: 'Midterm_Exam_Timetable_Fall2026.pdf',
     time: '6 hours ago',

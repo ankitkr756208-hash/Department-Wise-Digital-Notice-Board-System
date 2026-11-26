@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNotices } from '../context/NoticeContext';
+import abesLogo from '../assets/abes-logo.png';
 
 export default function Sidebar({ isOpen, onClose, onOpenCreateNotice }) {
   const { user, logout } = useAuth();
@@ -80,20 +81,22 @@ export default function Sidebar({ isOpen, onClose, onOpenCreateNotice }) {
         }`}
       >
         {/* Brand & Mobile Close */}
-        <div className="h-16 px-6 border-b border-slate-100 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xs">
-              <Layers className="w-4 h-4" />
-            </div>
+        <div className="h-16 px-4 border-b border-slate-100 flex items-center justify-between">
+          <NavLink to="/" className="flex items-center gap-2.5">
+            <img
+              src={abesLogo}
+              alt="ABES Logo"
+              className="h-9 w-auto object-contain bg-white rounded-md p-0.5"
+            />
             <div>
-              <span className="text-sm font-bold tracking-tight text-slate-900 block leading-none">
-                Apex Portal
+              <span className="text-xs font-bold tracking-tight text-slate-900 block leading-tight">
+                ABES Engg. College
               </span>
               <span className="text-[10px] uppercase font-semibold text-blue-600 tracking-wider">
                 Digital Board
               </span>
             </div>
-          </div>
+          </NavLink>
           <button
             onClick={onClose}
             className="p-1 rounded-lg text-slate-400 hover:text-slate-600 lg:hidden"

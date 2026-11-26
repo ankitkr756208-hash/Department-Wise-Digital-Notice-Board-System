@@ -8,9 +8,10 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { demoUsers } from '../data/dummyData';
+import abesLogo from '../assets/abes-logo.png';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('danielle.attah@student.apex.edu');
+  const [email, setEmail] = useState('ankit.kumar@student.abes.ac.in');
   const [password, setPassword] = useState('password123');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -51,15 +52,22 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link to="/" className="inline-flex items-center gap-2.5 mb-3 group">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-            <Layers className="w-5 h-5" />
+        <Link to="/" className="inline-flex flex-col items-center gap-2 mb-3 group">
+          <img
+            src={abesLogo}
+            alt="ABES Logo"
+            className="h-16 w-auto object-contain bg-white rounded-xl p-1.5 shadow-sm group-hover:scale-105 transition-transform"
+          />
+          <div>
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight block">
+              ABES Engineering College
+            </span>
+            <span className="text-xs uppercase font-bold tracking-wider text-blue-600 block">
+              Department-Wise Digital Notice Board
+            </span>
           </div>
-          <span className="text-xl font-bold text-slate-900 tracking-tight">
-            Apex Digital Board
-          </span>
         </Link>
-        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="text-xl font-bold text-slate-800 tracking-tight mt-2">
           Sign In to Your Campus Portal
         </h2>
         <p className="mt-1 text-xs text-slate-500">

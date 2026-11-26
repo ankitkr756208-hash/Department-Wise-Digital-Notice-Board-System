@@ -7,6 +7,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import NotificationBell from './NotificationBell';
 import ProfileDropdown from './ProfileDropdown';
+import abesLogo from '../assets/abes-logo.png';
 
 export default function Navbar({ onToggleSidebar, onOpenCreateNotice }) {
   const { user } = useAuth();
@@ -27,13 +28,15 @@ export default function Navbar({ onToggleSidebar, onOpenCreateNotice }) {
             <Menu className="w-5 h-5" />
           </button>
 
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
-              <Layers className="w-5 h-5" />
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-base font-bold tracking-tight text-slate-900 block leading-tight">
-                Apex Portal
+          <Link to="/" className="lg:hidden flex items-center gap-2.5 group">
+            <img
+              src={abesLogo}
+              alt="ABES Logo"
+              className="h-8 w-auto object-contain"
+            />
+            <div>
+              <span className="text-sm font-bold tracking-tight text-slate-900 block leading-tight">
+                ABES EC
               </span>
               <span className="text-[10px] uppercase font-semibold tracking-wider text-blue-600 block leading-none">
                 Digital Notice Board

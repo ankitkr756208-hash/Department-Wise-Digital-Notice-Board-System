@@ -44,10 +44,16 @@ export default function NoticeDrawer({ notice, onClose }) {
   };
 
   return (
-    <aside 
-      aria-label="Notice Details Panel"
-      className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl border-l border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out"
-    >
+    <>
+      {/* Backdrop Overlay for responsive outside click */}
+      <div
+        className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs transition-opacity"
+        onClick={onClose}
+      />
+      <aside 
+        aria-label="Notice Details Panel"
+        className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl border-l border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out"
+      >
       {/* Header */}
       <div className="p-4 px-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
         <div className="flex items-center gap-2">
@@ -240,5 +246,6 @@ export default function NoticeDrawer({ notice, onClose }) {
         </button>
       </div>
     </aside>
+    </>
   );
 }

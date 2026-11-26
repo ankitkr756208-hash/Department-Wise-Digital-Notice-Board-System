@@ -91,69 +91,123 @@ const seedData = async () => {
     console.log('[Seeding]: Creating institutional users with hashed passwords...');
     // Create users individually or through model to trigger pre('save') bcrypt hashing
     const adminUser = new User({
-      name: 'Dr. Alistair Vance',
+      name: 'Dr. Sanjay Kumar Agarwal',
+      email: 'admin@abes.ac.in',
+      password: 'password123',
+      role: 'admin',
+      department: 'All',
+      designation: 'Director & Super Administrator',
+      enrollmentNo: 'DIR-001',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+      phone: '+91 120 713 5111'
+    });
+    await adminUser.save();
+
+    // Legacy admin alias for backwards test compatibility
+    const legacyAdmin = new User({
+      name: 'Dr. Sanjay Kumar Agarwal',
       email: 'admin@apexuniversity.edu',
       password: 'password123',
       role: 'admin',
       department: 'All',
-      designation: 'Director of Academic Affairs & Super Administrator',
-      enrollmentNo: 'ADM-9021',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-      phone: '+1 (555) 234-5678'
+      designation: 'Director & Super Administrator',
+      enrollmentNo: 'DIR-002',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+      phone: '+91 120 713 5111'
     });
-    await adminUser.save();
+    await legacyAdmin.save();
 
     const hodUser = new User({
-      name: 'Dr. Sarah Jenkins',
+      name: 'Dr. Shruti Gupta',
+      email: 'hod.cse2@abes.ac.in',
+      password: 'password123',
+      role: 'hod',
+      department: 'CSE',
+      designation: 'HOD-CSE-2 & Professor',
+      enrollmentNo: 'FAC-CSE-002',
+      avatar: '/hod-shruti-gupta.png',
+      phone: '+91 120 713 5122'
+    });
+    await hodUser.save();
+
+    // Legacy HOD alias
+    const legacyHod = new User({
+      name: 'Dr. Shruti Gupta',
       email: 'sarah.jenkins@apexuniversity.edu',
       password: 'password123',
       role: 'hod',
       department: 'CSE',
-      designation: 'Head of Department & Professor',
+      designation: 'HOD-CSE-2 & Professor',
       enrollmentNo: 'FAC-CSE-001',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
-      phone: '+1 (555) 345-6789'
+      avatar: '/hod-shruti-gupta.png',
+      phone: '+91 120 713 5122'
     });
-    await hodUser.save();
+    await legacyHod.save();
 
     const facultyUser = new User({
       name: 'Prof. Rajiv Sharma',
-      email: 'rajiv.sharma@apexuniversity.edu',
+      email: 'rajiv.sharma@abes.ac.in',
       password: 'password123',
       role: 'faculty',
       department: 'CSE',
       designation: 'Associate Professor (Data Systems)',
       enrollmentNo: 'FAC-CSE-018',
       avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80',
-      phone: '+1 (555) 456-7890'
+      phone: '+91 120 713 5133'
     });
     await facultyUser.save();
 
+    const legacyFaculty = new User({
+      name: 'Prof. Rajiv Sharma',
+      email: 'rajiv.sharma@apexuniversity.edu',
+      password: 'password123',
+      role: 'faculty',
+      department: 'CSE',
+      designation: 'Associate Professor (Data Systems)',
+      enrollmentNo: 'FAC-CSE-019',
+      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80',
+      phone: '+91 120 713 5133'
+    });
+    await legacyFaculty.save();
+
     const facultyUser2 = new User({
       name: 'Dr. Priya Sundaram',
-      email: 'priya.sundaram@apexuniversity.edu',
+      email: 'priya.sundaram@abes.ac.in',
       password: 'password123',
       role: 'faculty',
       department: 'CSE',
       designation: 'Associate Professor (AI & Vision)',
       enrollmentNo: 'FAC-CSE-022',
       avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
-      phone: '+1 (555) 456-7892'
+      phone: '+91 120 713 5134'
     });
     await facultyUser2.save();
 
     const studentUser = new User({
-      name: 'Danielle Attah',
+      name: 'Ankit Kumar',
+      email: 'ankit.kumar@student.abes.ac.in',
+      password: 'password123',
+      role: 'student',
+      department: 'CSE',
+      designation: 'B.Tech Student (Semester 6, CSE-A)',
+      enrollmentNo: '2100320100042',
+      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+      phone: '+91 98765 43210'
+    });
+    await studentUser.save();
+
+    const legacyStudent = new User({
+      name: 'Ankit Kumar',
       email: 'danielle.attah@student.apex.edu',
       password: 'password123',
       role: 'student',
       department: 'CSE',
-      designation: 'Undergraduate Student (Semester 6)',
+      designation: 'B.Tech Student (Semester 6, CSE-A)',
       enrollmentNo: '21CS042',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
-      phone: '+1 (555) 987-6543'
+      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+      phone: '+91 98765 43210'
     });
-    await studentUser.save();
+    await legacyStudent.save();
 
     // Link HOD to CSE Department
     const cseDept = await Department.findOne({ code: 'CSE' });
@@ -344,10 +398,10 @@ All students are requested to download the examination timetable and report to t
     console.log('✅ DATABASE SEEDING COMPLETED SUCCESSFULLY!');
     console.log('======================================================');
     console.log('Pre-configured User Credentials (Password: password123):');
-    console.log('1. Admin:   admin@apexuniversity.edu   (Super Admin)');
-    console.log('2. HOD:     sarah.jenkins@apexuniversity.edu (HOD - CSE)');
-    console.log('3. Faculty: rajiv.sharma@apexuniversity.edu  (Faculty - CSE)');
-    console.log('4. Student: danielle.attah@student.apex.edu  (Student - CSE)');
+    console.log('1. Admin:   admin@abes.ac.in (or admin@apexuniversity.edu) - Dr. Sanjay Kumar Agarwal');
+    console.log('2. HOD:     hod.cse2@abes.ac.in (or sarah.jenkins@apexuniversity.edu) - Dr. Shruti Gupta');
+    console.log('3. Faculty: rajiv.sharma@abes.ac.in - Prof. Rajiv Sharma');
+    console.log('4. Student: ankit.kumar@student.abes.ac.in (or danielle.attah@student.apex.edu) - Ankit Kumar');
     console.log('======================================================\n');
 
     process.exit(0);

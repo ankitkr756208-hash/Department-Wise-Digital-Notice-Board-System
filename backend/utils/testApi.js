@@ -29,15 +29,25 @@ const runTests = async () => {
   console.log('======================================================\n');
 
   try {
-    // 1. Health check
-    console.log('[1/7] Testing System Health Check...');
+    // 1. API root and browser favicon
+    console.log('[1/8] Testing API root and favicon...');
+    const rootRes = await fetch(BASE_URL);
+    const rootData = await rootRes.json();
+    assert(rootRes.status === 200, 'API root returns 200 OK');
+    assert(rootData.health === '/api/health', 'API root points to the health check');
+
+    const faviconRes = await fetch(`${BASE_URL}/favicon.ico`);
+    assert(faviconRes.status === 204, 'Favicon request returns 204 No Content');
+
+    // 2. Health check
+    console.log('[2/8] Testing System Health Check...');
     const healthRes = await fetch(`${BASE_URL}/api/health`);
     const healthData = await healthRes.json();
     assert(healthRes.status === 200, 'Health check returns 200 OK');
     assert(healthData.status === 'online', 'Health status is online');
 
-    // 2. Authentication Tests
-    console.log('\n[2/7] Testing Authentication Module...');
+    // 3. Authentication Tests
+    console.log('\n[3/8] Testing Authentication Module...');
     
     // Login Admin
     const adminLoginRes = await fetch(`${BASE_URL}/api/auth/login`, {
@@ -103,8 +113,8 @@ const runTests = async () => {
     });
     assert(regRes.status === 201, 'Student registration returns 201 Created');
 
-    // 3. Department Management Tests
-    console.log('\n[3/7] Testing Department Management Module...');
+    // 4. Department Management Tests
+    console.log('\n[4/8] Testing Department Management Module...');
     const deptsRes = await fetch(`${BASE_URL}/api/departments`);
     const deptsData = await deptsRes.json();
     assert(deptsRes.status === 200, 'GET /api/departments returns 200 OK');
@@ -115,8 +125,8 @@ const runTests = async () => {
     assert(singleDeptRes.status === 200, 'GET /api/departments/CSE returns 200 OK');
     assert(singleDeptData.data.code === 'CSE', 'Department code verified');
 
-    // 4. Notice Management & RBAC Tests
-    console.log('\n[4/7] Testing Notice Management & RBAC...');
+    // 5. Notice Management & RBAC Tests
+    console.log('\n[5/8] Testing Notice Management & RBAC...');
     // Faculty drafts notice -> status should be 'pending'
     const createNoticeRes = await fetch(`${BASE_URL}/api/notices`, {
       method: 'POST',
@@ -163,8 +173,8 @@ const runTests = async () => {
     const hasApprovedNotice = studentNoticesData2.data.some((n) => n._id === createdNoticeId);
     assert(hasApprovedNotice, 'Student can see notice once approved by HOD');
 
-    // 5. Bookmark Management Tests
-    console.log('\n[5/7] Testing Bookmark Management...');
+    // 6. Bookmark Management Tests
+    console.log('\n[6/8] Testing Bookmark Management...');
     const bookmarkRes = await fetch(`${BASE_URL}/api/bookmarks/${createdNoticeId}`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${studentToken}` }
@@ -188,8 +198,8 @@ const runTests = async () => {
     });
     assert(removeBookmarkRes.status === 200, 'DELETE /api/bookmarks/:noticeId returns 200 OK');
 
-    // 6. Dashboard Statistics Tests
-    console.log('\n[6/7] Testing Role-Based Dashboard Analytics APIs...');
+    // 7. Dashboard Statistics Tests
+    console.log('\n[7/8] Testing Role-Based Dashboard Analytics APIs...');
     // Admin Dashboard Stats
     const adminDashRes = await fetch(`${BASE_URL}/api/dashboard/admin`, {
       headers: { Authorization: `Bearer ${adminToken}` }
@@ -223,8 +233,8 @@ const runTests = async () => {
     assert(stuDashRes.status === 200, 'GET /api/dashboard/student returns 200 OK');
     assert(stuDashData.data.student.department === 'CSE', 'Student dashboard department verified');
 
-    // 7. Security & Authorization Negative Tests
-    console.log('\n[7/7] Testing Security & Permission Rejections (RBAC)...');
+    // 8. Security & Authorization Negative Tests
+    console.log('\n[8/8] Testing Security & Permission Rejections (RBAC)...');
     
     // Student attempting to create notice (Forbidden)
     const illegalCreateRes = await fetch(`${BASE_URL}/api/notices`, {

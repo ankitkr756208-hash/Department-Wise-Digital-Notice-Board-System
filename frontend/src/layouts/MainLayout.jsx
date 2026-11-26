@@ -24,7 +24,7 @@ export default function MainLayout() {
       />
 
       {/* Main Content Area */}
-      <div className="lg:pl-64 flex flex-col min-h-screen">
+      <div className="lg:pl-64 flex flex-col min-h-screen w-full min-w-0 overflow-x-hidden">
         {/* Top Sticky Header */}
         <Navbar
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}

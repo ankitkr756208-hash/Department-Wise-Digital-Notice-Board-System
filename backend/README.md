@@ -96,6 +96,9 @@ The server will boot on `http://localhost:5000` with status:
 `[Server Running]: Notice Board API listening on port 5000 in development mode`
 `[MongoDB Connected]: localhost:27017/digital_notice_board`
 
+Open `http://localhost:5000/` for the API welcome response or
+`http://localhost:5000/api/health` to check API health.
+
 ### 6. Run Automated Test Suite
 ```bash
 npm test

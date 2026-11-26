@@ -39,6 +39,18 @@ if (process.env.NODE_ENV !== 'test') {
 // Serve uploaded static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Department-Wise Digital Notice Board System API',
+    health: '/api/health'
+  });
+});
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendStatus(204);
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({

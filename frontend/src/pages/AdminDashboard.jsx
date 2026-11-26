@@ -16,6 +16,7 @@ import { useToast } from '../context/ToastContext';
 import CreateNoticeModal from '../components/CreateNoticeModal';
 import NoticeDrawer from '../components/NoticeDrawer';
 import { Link } from 'react-router-dom';
+import abesCampusHd from '../assets/abes-campus-hd.jpg';
 
 export default function AdminDashboard() {
   const { notices, approveNotice, rejectNotice } = useNotices();
@@ -46,33 +47,44 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
-              Central Administration
-            </span>
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700">
-              Super Admin Mode
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Academic Governance & Notice Analytics
-          </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Real-time telemetry, departmental volume monitoring, and university-wide circular moderation.
-          </p>
+      {/* Campus Hero Header Banner with ABES HD Background */}
+      <div className="relative rounded-3xl p-6 sm:p-8 text-white shadow-xl overflow-hidden border border-slate-200/20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={abesCampusHd}
+            alt="ABES Engineering College Campus"
+            className="w-full h-full object-cover object-center filter brightness-[0.38] contrast-[1.15]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-blue-950/85 to-indigo-950/80" />
         </div>
 
-        <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => setCreateModalOpen(true)}
-            className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition shadow-sm flex items-center gap-2"
-          >
-            <PlusCircle className="w-4 h-4" />
-            <span>Broadcast Circular</span>
-          </button>
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-bold text-blue-300 uppercase tracking-wider">
+                Central Administration
+              </span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/30 text-rose-200 border border-rose-400/30">
+                Super Admin Mode
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Academic Governance & Notice Analytics
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-200 mt-1 max-w-2xl">
+              ABES Engineering College • Centralised institutional telemetry, department moderation & campus broadcast network.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={() => setCreateModalOpen(true)}
+              className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition shadow-md flex items-center gap-2 shrink-0"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Broadcast Circular</span>
+            </button>
+          </div>
         </div>
       </div>
 
