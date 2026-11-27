@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Mail, Phone, ExternalLink, MapPin } from 'lucide-react';
+import { ShieldCheck, Mail, Phone, ExternalLink, MapPin, Code2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import abesLogo from '../assets/abes-logo.png';
 
@@ -115,12 +115,43 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
-          <p>© {new Date().getFullYear()} ABES Engineering College, Ghaziabad. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-slate-600">Privacy Policy</a>
-            <a href="#terms" className="hover:text-slate-600">Terms of Governance</a>
-            <a href="#it-policy" className="hover:text-slate-600">Campus IT Policy</a>
+        {/* Development Team & Credits Section */}
+        <div className="pt-6 border-t border-slate-200">
+          <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5 text-center md:text-left">
+              <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-blue-600 shrink-0">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                  <span className="text-xs font-bold text-slate-800">
+                    Developed & Maintained By:
+                  </span>
+                  <span className="text-xs font-bold text-blue-600">
+                    Ankit Kumar &amp; Alok Kumar
+                  </span>
+                  <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                    CSE Section 11
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium mt-0.5">
+                  Full Stack Development Team
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center md:text-right">
+              <p className="text-xs font-semibold text-slate-700">
+                © 2026 ABESEC Ghaziabad. All Rights Reserved.
+              </p>
+              <div className="flex items-center justify-center md:justify-end gap-3 mt-1 text-[11px] text-slate-400">
+                <a href="#privacy" className="hover:text-blue-600 transition">Privacy Policy</a>
+                <span>•</span>
+                <a href="#terms" className="hover:text-blue-600 transition">Terms of Governance</a>
+                <span>•</span>
+                <a href="#it-policy" className="hover:text-blue-600 transition">Campus IT Policy</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
