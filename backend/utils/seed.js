@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+const dns = require('dns');
+
+// Automatically configure public DNS to resolve Atlas SRV records
+try {
+  dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
+} catch (e) {}
 
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
@@ -10,10 +16,19 @@ const Notice = require('../models/Notice');
 const Bookmark = require('../models/Bookmark');
 const ActivityLog = require('../models/ActivityLog');
 
+const LOCAL_FALLBACK_URI = 'mongodb://127.0.0.1:27017/digital-note-board';
+
 const seedData = async () => {
   try {
     console.log('[Seeding]: Connecting to MongoDB...');
-    await mongoose.connect(process.env.MONGO_URI);
+    try {
+      await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 5000 });
+      console.log('[Seeding]: Connected to primary database.');
+    } catch (primaryErr) {
+      console.warn(`[Seeding Warning]: Primary connection failed (${primaryErr.message}). Falling back to local MongoDB...`);
+      await mongoose.connect(LOCAL_FALLBACK_URI, { serverSelectionTimeoutMS: 5000 });
+      console.log('[Seeding]: Connected to local MongoDB fallback.');
+    }
     console.log('[Seeding]: Clearing existing database collections...');
 
     await Promise.all([
