@@ -10,7 +10,11 @@
 **Project Type:** Full Stack Development (FSD)
 **Project Title:** Department-Wise Digital Notice Board System
 **Tech Stack:** React.js · Vite · Tailwind CSS · Node.js · Express.js · MongoDB · Mongoose · JWT · bcrypt
-**🌐 Live Demo:** [https://department-wise-digital-notice-boar.vercel.app/](https://department-wise-digital-notice-boar.vercel.app/)
+
+**🌐 Live Demo:**
+
+- **Frontend (Vercel):** https://department-wise-digital-notice-boar.vercel.app/
+- **Backend (Render):** https://digital-notice-board-system-0uf1.onrender.com/
 
 ---
 
